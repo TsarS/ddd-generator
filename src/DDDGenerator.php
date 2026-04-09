@@ -528,6 +528,10 @@ class DDDGenerator
     private function generateFromTemplate(string $targetPath, string $templatePath, array $replacements): void
     {
         if (!file_exists($targetPath)) {
+            if (!file_exists($templatePath)) {
+                // Skip missing templates instead of crashing
+                return;
+            }
             $templateContent = file_get_contents($templatePath);
             $content = str_replace(
                 array_keys($replacements),

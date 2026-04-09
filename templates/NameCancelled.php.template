@@ -1,0 +1,32 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Domain\Event\##Name##;
+
+use ##Application##\##Name##\Domain\VO\ID;
+
+class ##Name##Cancelled extends DomainEvent
+{
+    public function __construct(
+        ID $aggregateId,
+        private string $reason,
+        private \DateTimeImmutable $cancelledAt
+    ) {
+        parent::__construct($aggregateId);
+    }
+
+    public function getReason(): string
+    {
+        return $this->reason;
+    }
+
+    public function getCancelledAt(): \DateTimeImmutable
+    {
+        return $this->cancelledAt;
+    }
+
+    public function getEventType(): string
+    {
+        return '##Name##Cancelled';
+    }
+}

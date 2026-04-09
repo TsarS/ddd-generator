@@ -1,0 +1,33 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\Tests\##Name##\Domain\Event;
+
+use PHPUnit\Framework\TestCase;
+use Medigi\##Name##\Domain\Event\##Name##\##Name##Cancelled;
+use Medigi\##Name##\Domain\VO\ID;
+use DateTimeImmutable;
+
+class ##Name##CancelledTest extends TestCase
+{
+    public function testCanBeCreated(): void
+    {
+        $id = ID::generate();
+        $reason = 'Test reason';
+        $cancelledAt = new DateTimeImmutable();
+
+        $event = new ##Name##Cancelled($id, $reason, $cancelledAt);
+
+        $this->assertSame($id, $event->getAggregateId());
+        $this->assertSame($reason, $event->getReason());
+        $this->assertSame($cancelledAt, $event->getCancelledAt());
+    }
+
+    public function testGetEventType(): void
+    {
+        $id = ID::generate();
+        $event = new ##Name##Cancelled($id, 'reason', new DateTimeImmutable());
+
+        $this->assertSame('##Name##Cancelled', $event->getEventType());
+    }
+}

@@ -1,0 +1,14 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Application\##Name##\Listener;
+
+use ##Application##\##Name##\Domain\Event\##Name##\##Name##Cancelled;
+
+class ##Name##CancelledListener
+{
+    public function handle(##Name##Cancelled $event): void
+    {
+        // TODO: Implement logic to handle ##Name##Cancelled event
+    }
+}

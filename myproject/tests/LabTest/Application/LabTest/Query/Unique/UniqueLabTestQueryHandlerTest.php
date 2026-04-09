@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Query\Unique;
+namespace medigi\Tests\Application\Query\Unique;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\LabTest\Application\LabTest\Query\Unique\UniqueLabTestQuery;
-use Medigi\LabTest\Application\LabTest\Query\Unique\UniqueLabTestQueryHandler;
-use Medigi\LabTest\Domain\Entity\LabTest;
-use Medigi\LabTest\Domain\Repository\LabTestRepositoryInterface;
-use Medigi\LabTest\Domain\VO\ID;
+use medigi\LabTest\Application\LabTest\Query\Unique\UniqueLabTestQuery;
+use medigi\LabTest\Application\LabTest\Query\Unique\UniqueLabTestQueryHandler;
+use medigi\LabTest\Domain\Entity\LabTest;
+use medigi\LabTest\Domain\Repository\LabTestRepositoryInterface;
+use medigi\LabTest\Domain\VO\ID;
 use Mockery;
 
 class UniqueLabTestQueryHandlerTest extends TestCase

@@ -8,7 +8,7 @@ use ##Application##\LabTest\Domain\VO\ID;
 
 interface LabTestRepositoryInterface
 {
-    public function save(LabTest $LabTest): void;
+    public function save(LabTest $##name##): void;
 
     public function findById(ID $id): ?LabTest;
 
@@ -17,7 +17,9 @@ interface LabTestRepositoryInterface
 
     public function findByName(string $name): ?LabTest;
 
-    public function isNameUnique(string $name, ?ID $excludeId = null): bool;
+    public function findByCode(string $code): ?LabTest;
 
-    public function delete(LabTest $LabTest): void;
+    public function isUnique(string $name, ?ID $excludeId = null): bool;
+
+    public function delete(LabTest $##name##): void;
 }

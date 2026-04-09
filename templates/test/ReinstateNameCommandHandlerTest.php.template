@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Command\Reinstate;
+namespace ##AppName\Tests\Application\Command\Reinstate;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\##Application##\Application\##Name##\Command\Reinstate\Reinstate##Name##Command;
-use Medigi\##Application##\Application\##Name##\Command\Reinstate\Reinstate##Name##CommandHandler;
-use Medigi\##Application##\Domain\Entity\##Name##;
-use Medigi\##Application##\Domain\Repository\##Name##RepositoryInterface;
-use Medigi\##Application##\Domain\VO\ID;
-use Medigi\##Application##\Domain\VO\Status;
+use ##AppName\##Application##\Application\##Name##\Command\Reinstate\Reinstate##Name##Command;
+use ##AppName\##Application##\Application\##Name##\Command\Reinstate\Reinstate##Name##CommandHandler;
+use ##AppName\##Application##\Domain\Entity\##Name##;
+use ##AppName\##Application##\Domain\Repository\##Name##RepositoryInterface;
+use ##AppName\##Application##\Domain\VO\ID;
+use ##AppName\##Application##\Domain\VO\Status;
 use Mockery;
 
 class Reinstate##Name##CommandHandlerTest extends TestCase

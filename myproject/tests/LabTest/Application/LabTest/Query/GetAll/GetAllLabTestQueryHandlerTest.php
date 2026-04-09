@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Query\GetAll;
+namespace medigi\Tests\Application\Query\GetAll;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\LabTest\Application\LabTest\Query\GetAll\GetAllLabTestQuery;
-use Medigi\LabTest\Application\LabTest\Query\GetAll\GetAllLabTestQueryHandler;
-use Medigi\LabTest\Domain\Entity\LabTest;
-use Medigi\LabTest\Domain\Repository\LabTestRepositoryInterface;
+use medigi\LabTest\Application\LabTest\Query\GetAll\GetAllLabTestQuery;
+use medigi\LabTest\Application\LabTest\Query\GetAll\GetAllLabTestQueryHandler;
+use medigi\LabTest\Domain\Entity\LabTest;
+use medigi\LabTest\Domain\Repository\LabTestRepositoryInterface;
 use Mockery;
 
 class GetAllLabTestQueryHandlerTest extends TestCase
@@ -23,8 +23,8 @@ class GetAllLabTestQueryHandlerTest extends TestCase
 
     public function testHandleReturnsAllLabTests(): void
     {
-        $entity1 = LabTest::create(\Medigi\LabTest\Domain\VO\ID::generate(), 'Test 1');
-        $entity2 = LabTest::create(\Medigi\LabTest\Domain\VO\ID::generate(), 'Test 2');
+        $entity1 = LabTest::create(\medigi\LabTest\Domain\VO\ID::generate(), 'Test 1');
+        $entity2 = LabTest::create(\medigi\LabTest\Domain\VO\ID::generate(), 'Test 2');
 
         $this->repository
             ->shouldReceive('findAll')

@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Domain\Entity;
+namespace medigi\Tests\Domain\Entity;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\LabTest\Domain\Entity\LabTest;
-use Medigi\LabTest\Domain\VO\ID;
-use Medigi\LabTest\Domain\VO\Status;
-use Medigi\LabTest\Domain\Exception\LabTest\LabTestEmptyNameException;
-use Medigi\LabTest\Domain\Exception\LabTest\LabTestIsAlreadyActiveException;
-use Medigi\LabTest\Domain\Exception\LabTest\LabTestIsAlreadyArchivedException;
+use medigi\LabTest\Domain\Entity\LabTest;
+use medigi\LabTest\Domain\VO\ID;
+use medigi\LabTest\Domain\VO\Status;
+use medigi\LabTest\Domain\Exception\LabTest\LabTestEmptyNameException;
+use medigi\LabTest\Domain\Exception\LabTest\LabTestIsAlreadyActiveException;
+use medigi\LabTest\Domain\Exception\LabTest\LabTestIsAlreadyArchivedException;
 
 class LabTestTest extends TestCase
 {

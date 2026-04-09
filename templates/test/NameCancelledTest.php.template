@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\##Name##\Domain\Event;
+namespace ##AppName\Tests\##Name##\Domain\Event;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\##Name##\Domain\Event\##Name##\##Name##Cancelled;
-use Medigi\##Name##\Domain\VO\ID;
+use ##AppName\##Name##\Domain\Event\##Name##\##Name##Cancelled;
+use ##AppName\##Name##\Domain\VO\ID;
 use DateTimeImmutable;
 
 class ##Name##CancelledTest extends TestCase

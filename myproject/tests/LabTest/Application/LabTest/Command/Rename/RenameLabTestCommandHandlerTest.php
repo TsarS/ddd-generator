@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Command\Rename;
+namespace medigi\Tests\Application\Command\Rename;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\LabTest\Application\LabTest\Command\Rename\RenameLabTestCommand;
-use Medigi\LabTest\Application\LabTest\Command\Rename\RenameLabTestCommandHandler;
-use Medigi\LabTest\Domain\Entity\LabTest;
-use Medigi\LabTest\Domain\Repository\LabTestRepositoryInterface;
-use Medigi\LabTest\Domain\VO\ID;
+use medigi\LabTest\Application\LabTest\Command\Rename\RenameLabTestCommand;
+use medigi\LabTest\Application\LabTest\Command\Rename\RenameLabTestCommandHandler;
+use medigi\LabTest\Domain\Entity\LabTest;
+use medigi\LabTest\Domain\Repository\LabTestRepositoryInterface;
+use medigi\LabTest\Domain\VO\ID;
 use Mockery;
 
 class RenameLabTestCommandHandlerTest extends TestCase

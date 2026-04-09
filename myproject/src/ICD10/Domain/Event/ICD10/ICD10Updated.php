@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\ICD10\Domain\Event\ICD10;
+namespace ##AppName\ICD10\Domain\Event\ICD10;
 
-use Medigi\ICD10\Domain\VO\ID;
+use ##AppName\ICD10\Domain\VO\ID;
 use DateTimeImmutable;
 
 class ICD10Updated

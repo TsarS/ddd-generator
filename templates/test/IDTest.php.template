@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\##Name##\Domain\VO;
+namespace ##AppName\Tests\##Name##\Domain\VO;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\##Name##\Domain\VO\ID;
+use ##AppName\##Name##\Domain\VO\ID;
 
 class IDTest extends TestCase
 {

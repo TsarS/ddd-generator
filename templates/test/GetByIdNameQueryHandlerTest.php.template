@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Query\GetById;
+namespace ##AppName\Tests\Application\Query\GetById;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\##Application##\Application\##Name##\Query\GetById\GetById##Name##Query;
-use Medigi\##Application##\Application\##Name##\Query\GetById\GetById##Name##QueryHandler;
-use Medigi\##Application##\Domain\Entity\##Name##;
-use Medigi\##Application##\Domain\Repository\##Name##RepositoryInterface;
-use Medigi\##Application##\Domain\VO\ID;
+use ##AppName\##Application##\Application\##Name##\Query\GetById\GetById##Name##Query;
+use ##AppName\##Application##\Application\##Name##\Query\GetById\GetById##Name##QueryHandler;
+use ##AppName\##Application##\Domain\Entity\##Name##;
+use ##AppName\##Application##\Domain\Repository\##Name##RepositoryInterface;
+use ##AppName\##Application##\Domain\VO\ID;
 use Mockery;
 
 class GetById##Name##QueryHandlerTest extends TestCase

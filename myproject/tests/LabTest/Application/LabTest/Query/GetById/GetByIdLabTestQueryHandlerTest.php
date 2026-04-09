@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Query\GetById;
+namespace medigi\Tests\Application\Query\GetById;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\LabTest\Application\LabTest\Query\GetById\GetByIdLabTestQuery;
-use Medigi\LabTest\Application\LabTest\Query\GetById\GetByIdLabTestQueryHandler;
-use Medigi\LabTest\Domain\Entity\LabTest;
-use Medigi\LabTest\Domain\Repository\LabTestRepositoryInterface;
-use Medigi\LabTest\Domain\VO\ID;
+use medigi\LabTest\Application\LabTest\Query\GetById\GetByIdLabTestQuery;
+use medigi\LabTest\Application\LabTest\Query\GetById\GetByIdLabTestQueryHandler;
+use medigi\LabTest\Domain\Entity\LabTest;
+use medigi\LabTest\Domain\Repository\LabTestRepositoryInterface;
+use medigi\LabTest\Domain\VO\ID;
 use Mockery;
 
 class GetByIdLabTestQueryHandlerTest extends TestCase

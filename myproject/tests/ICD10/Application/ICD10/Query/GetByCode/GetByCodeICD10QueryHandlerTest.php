@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Query\GetByCode;
+namespace medigi\Tests\Application\Query\GetByCode;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\ICD10\Application\ICD10\Query\GetByCode\GetByCodeICD10Query;
-use Medigi\ICD10\Application\ICD10\Query\GetByCode\GetByCodeICD10QueryHandler;
-use Medigi\ICD10\Domain\Entity\ICD10;
-use Medigi\ICD10\Domain\Repository\ICD10RepositoryInterface;
-use Medigi\ICD10\Domain\VO\ID;
+use medigi\ICD10\Application\ICD10\Query\GetByCode\GetByCodeICD10Query;
+use medigi\ICD10\Application\ICD10\Query\GetByCode\GetByCodeICD10QueryHandler;
+use medigi\ICD10\Domain\Entity\ICD10;
+use medigi\ICD10\Domain\Repository\ICD10RepositoryInterface;
+use medigi\ICD10\Domain\VO\ID;
 use Mockery;
 
 class GetByCodeICD10QueryHandlerTest extends TestCase

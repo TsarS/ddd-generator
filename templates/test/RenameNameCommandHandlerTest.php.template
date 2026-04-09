@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Command\Rename;
+namespace ##AppName\Tests\Application\Command\Rename;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\##Application##\Application\##Name##\Command\Rename\Rename##Name##Command;
-use Medigi\##Application##\Application\##Name##\Command\Rename\Rename##Name##CommandHandler;
-use Medigi\##Application##\Domain\Entity\##Name##;
-use Medigi\##Application##\Domain\Repository\##Name##RepositoryInterface;
-use Medigi\##Application##\Domain\VO\ID;
+use ##AppName\##Application##\Application\##Name##\Command\Rename\Rename##Name##Command;
+use ##AppName\##Application##\Application\##Name##\Command\Rename\Rename##Name##CommandHandler;
+use ##AppName\##Application##\Domain\Entity\##Name##;
+use ##AppName\##Application##\Domain\Repository\##Name##RepositoryInterface;
+use ##AppName\##Application##\Domain\VO\ID;
 use Mockery;
 
 class Rename##Name##CommandHandlerTest extends TestCase

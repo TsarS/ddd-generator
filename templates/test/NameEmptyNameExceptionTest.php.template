@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Domain\Exception;
+namespace ##AppName\Tests\Domain\Exception;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\##Application##\Domain\Exception\##Name##\##Name##EmptyNameException;
-use Medigi\##Application##\Domain\Entity\##Name##;
-use Medigi\##Application##\Domain\VO\ID;
+use ##AppName\##Application##\Domain\Exception\##Name##\##Name##EmptyNameException;
+use ##AppName\##Application##\Domain\Entity\##Name##;
+use ##AppName\##Application##\Domain\VO\ID;
 
 class ##Name##EmptyNameExceptionTest extends TestCase
 {

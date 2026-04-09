@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Command\Delete;
+namespace medigi\Tests\Application\Command\Delete;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\LabTest\Application\LabTest\Command\Delete\DeleteLabTestCommand;
-use Medigi\LabTest\Application\LabTest\Command\Delete\DeleteLabTestCommandHandler;
-use Medigi\LabTest\Domain\Entity\LabTest;
-use Medigi\LabTest\Domain\Repository\LabTestRepositoryInterface;
-use Medigi\LabTest\Domain\VO\ID;
-use Medigi\LabTest\Domain\VO\Status;
+use medigi\LabTest\Application\LabTest\Command\Delete\DeleteLabTestCommand;
+use medigi\LabTest\Application\LabTest\Command\Delete\DeleteLabTestCommandHandler;
+use medigi\LabTest\Domain\Entity\LabTest;
+use medigi\LabTest\Domain\Repository\LabTestRepositoryInterface;
+use medigi\LabTest\Domain\VO\ID;
+use medigi\LabTest\Domain\VO\Status;
 use Mockery;
 
 class DeleteLabTestCommandHandlerTest extends TestCase

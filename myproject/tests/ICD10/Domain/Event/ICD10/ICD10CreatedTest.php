@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Domain\Event;
+namespace medigi\Tests\Domain\Event;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\ICD10\Domain\Event\ICD10\ICD10Created;
-use Medigi\ICD10\Domain\VO\ID;
+use medigi\ICD10\Domain\Event\ICD10\ICD10Created;
+use medigi\ICD10\Domain\VO\ID;
 
 class ICD10CreatedTest extends TestCase
 {

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\##Name##\Domain\Event\##Name##;
+namespace ##AppName\##Name##\Domain\Event\##Name##;
 
-use Medigi\##Name##\Domain\VO\ID;
+use ##AppName\##Name##\Domain\VO\ID;
 use DateTimeImmutable;
 
 class ##Name##Updated

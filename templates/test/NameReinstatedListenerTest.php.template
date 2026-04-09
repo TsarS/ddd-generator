@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Listener;
+namespace ##AppName\Tests\Application\Listener;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\##Application##\Application\##Name##\Listener\##Name##ReinstatedListener;
-use Medigi\##Application##\Domain\Event\##Name##\##Name##Reinstated;
-use Medigi\##Application##\Domain\VO\ID;
+use ##AppName\##Application##\Application\##Name##\Listener\##Name##ReinstatedListener;
+use ##AppName\##Application##\Domain\Event\##Name##\##Name##Reinstated;
+use ##AppName\##Application##\Domain\VO\ID;
 use DateTimeImmutable;
 
 class ##Name##ReinstatedListenerTest extends TestCase

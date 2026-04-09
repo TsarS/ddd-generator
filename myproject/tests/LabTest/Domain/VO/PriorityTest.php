@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\LabTest\Domain\VO;
+namespace medigiTests\LabTest\Domain\VO;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\LabTest\Domain\VO\Priority;
+use medigiLabTest\Domain\VO\Priority;
 
 class PriorityTest extends TestCase
 {

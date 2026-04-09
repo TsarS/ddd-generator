@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Query\GetAll;
+namespace ##AppName\Tests\Application\Query\GetAll;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\##Application##\Application\##Name##\Query\GetAll\GetAll##Name##Query;
-use Medigi\##Application##\Application\##Name##\Query\GetAll\GetAll##Name##QueryHandler;
-use Medigi\##Application##\Domain\Entity\##Name##;
-use Medigi\##Application##\Domain\Repository\##Name##RepositoryInterface;
+use ##AppName\##Application##\Application\##Name##\Query\GetAll\GetAll##Name##Query;
+use ##AppName\##Application##\Application\##Name##\Query\GetAll\GetAll##Name##QueryHandler;
+use ##AppName\##Application##\Domain\Entity\##Name##;
+use ##AppName\##Application##\Domain\Repository\##Name##RepositoryInterface;
 use Mockery;
 
 class GetAll##Name##QueryHandlerTest extends TestCase
@@ -23,8 +23,8 @@ class GetAll##Name##QueryHandlerTest extends TestCase
 
     public function testHandleReturnsAll##Name##s(): void
     {
-        $entity1 = ##Name##::create(\Medigi\##Application##\Domain\VO\ID::generate(), 'Test 1');
-        $entity2 = ##Name##::create(\Medigi\##Application##\Domain\VO\ID::generate(), 'Test 2');
+        $entity1 = ##Name##::create(\##AppName\##Application##\Domain\VO\ID::generate(), 'Test 1');
+        $entity2 = ##Name##::create(\##AppName\##Application##\Domain\VO\ID::generate(), 'Test 2');
 
         $this->repository
             ->shouldReceive('findAll')

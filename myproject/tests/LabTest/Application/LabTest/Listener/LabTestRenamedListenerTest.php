@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Listener;
+namespace medigi\Tests\Application\Listener;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\LabTest\Application\LabTest\Listener\LabTestRenamedListener;
-use Medigi\LabTest\Domain\Event\LabTest\LabTestRenamed;
-use Medigi\LabTest\Domain\VO\ID;
+use medigi\LabTest\Application\LabTest\Listener\LabTestRenamedListener;
+use medigi\LabTest\Domain\Event\LabTest\LabTestRenamed;
+use medigi\LabTest\Domain\VO\ID;
 use DateTimeImmutable;
 
 class LabTestRenamedListenerTest extends TestCase

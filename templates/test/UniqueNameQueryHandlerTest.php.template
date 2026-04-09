@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Query\Unique;
+namespace ##AppName\Tests\Application\Query\Unique;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\##Application##\Application\##Name##\Query\Unique\Unique##Name##Query;
-use Medigi\##Application##\Application\##Name##\Query\Unique\Unique##Name##QueryHandler;
-use Medigi\##Application##\Domain\Entity\##Name##;
-use Medigi\##Application##\Domain\Repository\##Name##RepositoryInterface;
-use Medigi\##Application##\Domain\VO\ID;
+use ##AppName\##Application##\Application\##Name##\Query\Unique\Unique##Name##Query;
+use ##AppName\##Application##\Application\##Name##\Query\Unique\Unique##Name##QueryHandler;
+use ##AppName\##Application##\Domain\Entity\##Name##;
+use ##AppName\##Application##\Domain\Repository\##Name##RepositoryInterface;
+use ##AppName\##Application##\Domain\VO\ID;
 use Mockery;
 
 class Unique##Name##QueryHandlerTest extends TestCase

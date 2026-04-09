@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Query\GetAll;
+namespace medigi\Tests\Application\Query\GetAll;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\ICD10\Application\ICD10\Query\GetAll\GetAllICD10Query;
-use Medigi\ICD10\Application\ICD10\Query\GetAll\GetAllICD10QueryHandler;
-use Medigi\ICD10\Domain\Entity\ICD10;
-use Medigi\ICD10\Domain\Repository\ICD10RepositoryInterface;
+use medigi\ICD10\Application\ICD10\Query\GetAll\GetAllICD10Query;
+use medigi\ICD10\Application\ICD10\Query\GetAll\GetAllICD10QueryHandler;
+use medigi\ICD10\Domain\Entity\ICD10;
+use medigi\ICD10\Domain\Repository\ICD10RepositoryInterface;
 use Mockery;
 
 class GetAllICD10QueryHandlerTest extends TestCase
@@ -23,8 +23,8 @@ class GetAllICD10QueryHandlerTest extends TestCase
 
     public function testHandleReturnsAllICD10s(): void
     {
-        $entity1 = ICD10::create(\Medigi\ICD10\Domain\VO\ID::generate(), 'Test 1');
-        $entity2 = ICD10::create(\Medigi\ICD10\Domain\VO\ID::generate(), 'Test 2');
+        $entity1 = ICD10::create(\medigi\ICD10\Domain\VO\ID::generate(), 'Test 1');
+        $entity2 = ICD10::create(\medigi\ICD10\Domain\VO\ID::generate(), 'Test 2');
 
         $this->repository
             ->shouldReceive('findAll')

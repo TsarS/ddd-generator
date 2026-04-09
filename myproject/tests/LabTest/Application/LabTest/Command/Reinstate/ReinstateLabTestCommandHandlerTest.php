@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Command\Reinstate;
+namespace medigi\Tests\Application\Command\Reinstate;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\LabTest\Application\LabTest\Command\Reinstate\ReinstateLabTestCommand;
-use Medigi\LabTest\Application\LabTest\Command\Reinstate\ReinstateLabTestCommandHandler;
-use Medigi\LabTest\Domain\Entity\LabTest;
-use Medigi\LabTest\Domain\Repository\LabTestRepositoryInterface;
-use Medigi\LabTest\Domain\VO\ID;
-use Medigi\LabTest\Domain\VO\Status;
+use medigi\LabTest\Application\LabTest\Command\Reinstate\ReinstateLabTestCommand;
+use medigi\LabTest\Application\LabTest\Command\Reinstate\ReinstateLabTestCommandHandler;
+use medigi\LabTest\Domain\Entity\LabTest;
+use medigi\LabTest\Domain\Repository\LabTestRepositoryInterface;
+use medigi\LabTest\Domain\VO\ID;
+use medigi\LabTest\Domain\VO\Status;
 use Mockery;
 
 class ReinstateLabTestCommandHandlerTest extends TestCase

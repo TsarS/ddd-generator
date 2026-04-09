@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Domain\Repository;
+namespace ##AppName\Tests\Domain\Repository;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\##Application##\Domain\Repository\##Name##RepositoryInterface;
-use Medigi\##Application##\Domain\Entity\##Name##;
-use Medigi\##Application##\Domain\VO\ID;
+use ##AppName\##Application##\Domain\Repository\##Name##RepositoryInterface;
+use ##AppName\##Application##\Domain\Entity\##Name##;
+use ##AppName\##Application##\Domain\VO\ID;
 use Mockery;
 
 class ##Name##RepositoryTest extends TestCase

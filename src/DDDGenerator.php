@@ -8,6 +8,7 @@ class DDDGenerator
 {
     private array $dddConfig = [];
     private array $eventsConfig = [];
+    private string $appName = 'Medigi';
 
     public function generate(string $appName, string $dddConfigPath, ?string $eventsConfigPath = null)
     {
@@ -53,6 +54,13 @@ class DDDGenerator
         }
 
         $aggregates = $this->dddConfig['aggregates'] ?? [$this->dddConfig];
+
+        // Use appName from config if present, otherwise use provided appName
+        if (!empty($this->dddConfig['appName'])) {
+            $this->appName = $this->dddConfig['appName'];
+        } else {
+            $this->appName = $appName;
+        }
 
         // Создаём Shared структуру
         $this->createDirectory("$basePath/src/Shared/Application/Command");
@@ -102,7 +110,7 @@ class DDDGenerator
             $this->generateFromTemplate(
                 "$testPath/Domain/Entity/{$aggregateName}Test.php",
                 __DIR__ . '/../templates/test/NameTest.php.template',
-                ['##Name##' => $aggregateName, '##Application##' => $aggregateName]
+                ['##Name##' => $aggregateName, '##Application##' => $aggregateName, '##AppName\\' => $this->appName . '\\']
             );
         }
 
@@ -111,14 +119,14 @@ class DDDGenerator
         $this->generateFromTemplate(
             "$testPath/Domain/VO/IDTest.php",
             __DIR__ . '/../templates/test/IDTest.php.template',
-            ['##Name##' => $aggregateName]
+            ['##Name##' => $aggregateName, '##AppName\\' => $this->appName]
         );
         foreach ($props as $prop) {
             if ($prop['isVO']) {
                 $this->generateFromTemplate(
                     "$testPath/Domain/VO/{$prop['type']}Test.php",
                     __DIR__ . '/../templates/test/NameVOTest.php.template',
-                    ['##Name##' => $aggregateName, '##VOName##' => $prop['type']]
+                    ['##Name##' => $aggregateName, '##VOName##' => $prop['type'], '##AppName\\' => $this->appName]
                 );
             }
         }
@@ -129,7 +137,7 @@ class DDDGenerator
             $this->generateFromTemplate(
                 "$testPath/Domain/Event/$aggregateName/{$aggregateName}{$event}Test.php",
                 __DIR__ . '/../templates/test/Name' . $event . 'Test.php.template',
-                ['##Name##' => $aggregateName, '##Application##' => $aggregateName]
+                ['##Name##' => $aggregateName, '##Application##' => $aggregateName, '##AppName\\' => $this->appName . '\\']
             );
         }
 
@@ -138,7 +146,7 @@ class DDDGenerator
         $this->generateFromTemplate(
             "$testPath/Domain/Exception/$aggregateName/{$aggregateName}EmptyNameExceptionTest.php",
             __DIR__ . '/../templates/test/NameEmptyNameExceptionTest.php.template',
-            ['##Name##' => $aggregateName, '##Application##' => $aggregateName]
+            ['##Name##' => $aggregateName, '##Application##' => $aggregateName, '##AppName\\' => $this->appName . '\\']
         );
 
         // Repository tests
@@ -147,7 +155,7 @@ class DDDGenerator
             $this->generateFromTemplate(
                 "$testPath/Domain/Repository/{$aggregateName}RepositoryTest.php",
                 __DIR__ . '/../templates/test/NameRepositoryTest.php.template',
-                ['##Name##' => $aggregateName, '##Application##' => $aggregateName]
+                ['##Name##' => $aggregateName, '##Application##' => $aggregateName, '##AppName\\' => $this->appName . '\\']
             );
         }
 
@@ -159,7 +167,7 @@ class DDDGenerator
                 $this->generateFromTemplate(
                     "$testPath/Application/$aggregateName/Command/$command/{$command}{$aggregateName}CommandHandlerTest.php",
                     $handlerTemplate,
-                    ['##Name##' => $aggregateName, '##Application##' => $aggregateName]
+                    ['##Name##' => $aggregateName, '##Application##' => $aggregateName, '##AppName\\' => $this->appName . '\\']
                 );
             }
         }
@@ -172,7 +180,7 @@ class DDDGenerator
                 $this->generateFromTemplate(
                     "$testPath/Application/$aggregateName/Query/$query/{$query}{$aggregateName}QueryHandlerTest.php",
                     $handlerTemplate,
-                    ['##Name##' => $aggregateName, '##Application##' => $aggregateName]
+                    ['##Name##' => $aggregateName, '##Application##' => $aggregateName, '##AppName\\' => $this->appName . '\\']
                 );
             }
         }
@@ -185,7 +193,7 @@ class DDDGenerator
                 $this->generateFromTemplate(
                     "$testPath/Application/$aggregateName/Listener/{$aggregateName}{$event}ListenerTest.php",
                     $listenerTemplate,
-                    ['##Name##' => $aggregateName, '##Application##' => $aggregateName]
+                    ['##Name##' => $aggregateName, '##Application##' => $aggregateName, '##AppName\\' => $this->appName . '\\']
                 );
             }
         }
@@ -359,11 +367,11 @@ class DDDGenerator
         $lines[] = '<?php';
         $lines[] = 'declare(strict_types=1);';
         $lines[] = '';
-        $lines[] = 'namespace Medigi\\' . $targetAggregate . '\\Application\\' . $targetAggregate . '\\Adapter;';
+        $lines[] = 'namespace ' . $this->appName . '\\' . $targetAggregate . '\\Application\\' . $targetAggregate . '\\Adapter;';
         $lines[] = '';
-        $lines[] = 'use Medigi\\' . $sourceAggregate . '\\Domain\\Event\\' . $sourceAggregate . '\\' . $sourceAggregate . $eventName . ';';
-        $lines[] = 'use Medigi\\' . $targetAggregate . '\\Application\\' . $targetAggregate . '\\Command\\Create\\Create' . $targetAggregate . 'Command;';
-        $lines[] = 'use Medigi\\' . $targetAggregate . '\\Application\\' . $targetAggregate . '\\Command\\Create\\Create' . $targetAggregate . 'CommandHandler;';
+        $lines[] = 'use ' . $this->appName . '\\' . $sourceAggregate . '\\Domain\\Event\\' . $sourceAggregate . '\\' . $sourceAggregate . $eventName . ';';
+        $lines[] = 'use ' . $this->appName . '\\' . $targetAggregate . '\\Application\\' . $targetAggregate . '\\Command\\Create\\Create' . $targetAggregate . 'Command;';
+        $lines[] = 'use ' . $this->appName . '\\' . $targetAggregate . '\\Application\\' . $targetAggregate . '\\Command\\Create\\Create' . $targetAggregate . 'CommandHandler;';
         $lines[] = '';
         $lines[] = '/**';
         $lines[] = ' * Adapter: subscribes to ' . $sourceAggregate . $eventName . ' and creates/updates ' . $targetAggregate;
@@ -449,9 +457,9 @@ class DDDGenerator
         $lines[] = '<?php';
         $lines[] = 'declare(strict_types=1);';
         $lines[] = '';
-        $lines[] = 'namespace Medigi\\' . $name . '\\Domain\\Entity;';
+        $lines[] = 'namespace ' . $this->appName . '\\' . $name . '\\Domain\\Entity;';
         $lines[] = '';
-        $lines[] = 'use Medigi\\' . $name . '\\Domain\\VO\\ID;';
+        $lines[] = 'use ' . $this->appName . '\\' . $name . '\\Domain\\VO\\ID;';
         $lines[] = 'use DateTimeImmutable;';
         $lines[] = '';
         $lines[] = 'class ' . $name;
@@ -523,18 +531,18 @@ class DDDGenerator
         $lines[] = '<?php';
         $lines[] = 'declare(strict_types=1);';
         $lines[] = '';
-        $lines[] = 'namespace Medigi\\' . $name . '\\Domain\\Entity;';
+        $lines[] = 'namespace ' . $this->appName . '\\' . $name . '\\Domain\\Entity;';
         $lines[] = '';
-        $lines[] = 'use Medigi\\' . $name . '\\Domain\\Entity\\Aggregate;';
-        $lines[] = 'use Medigi\\' . $name . '\\Domain\\Entity\\EventTrait;';
-        $lines[] = 'use Medigi\\' . $name . '\\Domain\\VO\\ID;';
-        $lines[] = 'use Medigi\\' . $name . '\\Domain\\VO\\Status;';
+        $lines[] = 'use ' . $this->appName . '\\' . $name . '\\Domain\\Entity\\Aggregate;';
+        $lines[] = 'use ' . $this->appName . '\\' . $name . '\\Domain\\Entity\\EventTrait;';
+        $lines[] = 'use ' . $this->appName . '\\' . $name . '\\Domain\\VO\\ID;';
+        $lines[] = 'use ' . $this->appName . '\\' . $name . '\\Domain\\VO\\Status;';
 
         foreach ($events as $event) {
-            $lines[] = 'use Medigi\\' . $name . '\\Domain\\Event\\' . $name . '\\' . $name . $event . ';';
+            $lines[] = 'use ' . $this->appName . '\\' . $name . '\\Domain\\Event\\' . $name . '\\' . $name . $event . ';';
         }
 
-        $lines[] = 'use Medigi\\' . $name . '\\Domain\\Exception\\' . $name . '\\' . $name . 'EmptyNameException;';
+        $lines[] = 'use ' . $this->appName . '\\' . $name . '\\Domain\\Exception\\' . $name . '\\' . $name . 'EmptyNameException;';
         $lines[] = 'use DateTimeImmutable;';
         $lines[] = '';
         $lines[] = 'class ' . $name . ' extends Aggregate';
@@ -606,7 +614,7 @@ class DDDGenerator
         $lines[] = '<?php';
         $lines[] = 'declare(strict_types=1);';
         $lines[] = '';
-        $lines[] = 'namespace Medigi\\' . $namespace . '\\Domain\\VO;';
+        $lines[] = 'namespace ' . $this->appName . '\\' . $namespace . '\\Domain\\VO;';
         $lines[] = '';
         $lines[] = 'class ' . $voName;
         $lines[] = '{';
@@ -666,11 +674,11 @@ class DDDGenerator
         $autoload = [];
         foreach ($aggregates as $aggregate) {
             $name = $aggregate['name'];
-            $autoload["Medigi\\$name\\"] = "src/$name/";
+            $autoload[$this->appName . '\\' . $name . '\\'] = "src/$name/";
         }
 
         $autoloadJson = json_encode($autoload, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-        $autoloadDev = json_encode(["Medigi\\Tests\\" => "tests/"], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+        $autoloadDev = json_encode([$this->appName . '\\Tests\\' => "tests/"], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 
         $composerJson = <<<JSON
 {

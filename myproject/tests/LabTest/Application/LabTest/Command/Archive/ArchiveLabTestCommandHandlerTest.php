@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Command\Archive;
+namespace medigi\Tests\Application\Command\Archive;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\LabTest\Application\LabTest\Command\Archive\ArchiveLabTestCommand;
-use Medigi\LabTest\Application\LabTest\Command\Archive\ArchiveLabTestCommandHandler;
-use Medigi\LabTest\Domain\Entity\LabTest;
-use Medigi\LabTest\Domain\Repository\LabTestRepositoryInterface;
-use Medigi\LabTest\Domain\VO\ID;
-use Medigi\LabTest\Domain\VO\Status;
+use medigi\LabTest\Application\LabTest\Command\Archive\ArchiveLabTestCommand;
+use medigi\LabTest\Application\LabTest\Command\Archive\ArchiveLabTestCommandHandler;
+use medigi\LabTest\Domain\Entity\LabTest;
+use medigi\LabTest\Domain\Repository\LabTestRepositoryInterface;
+use medigi\LabTest\Domain\VO\ID;
+use medigi\LabTest\Domain\VO\Status;
 use Mockery;
 
 class ArchiveLabTestCommandHandlerTest extends TestCase

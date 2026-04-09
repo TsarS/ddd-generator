@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\LabTest\Domain\VO;
+namespace medigi\LabTest\Domain\VO;
 
 class Category
 {

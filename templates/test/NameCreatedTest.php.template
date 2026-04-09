@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Domain\Event;
+namespace ##AppName\Tests\Domain\Event;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\##Application##\Domain\Event\##Name##\##Name##Created;
-use Medigi\##Application##\Domain\VO\ID;
+use ##AppName\##Application##\Domain\Event\##Name##\##Name##Created;
+use ##AppName\##Application##\Domain\VO\ID;
 
 class ##Name##CreatedTest extends TestCase
 {

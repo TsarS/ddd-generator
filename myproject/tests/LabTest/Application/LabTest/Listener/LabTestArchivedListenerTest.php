@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Listener;
+namespace medigi\Tests\Application\Listener;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\LabTest\Application\LabTest\Listener\LabTestArchivedListener;
-use Medigi\LabTest\Domain\Event\LabTest\LabTestArchived;
-use Medigi\LabTest\Domain\VO\ID;
+use medigi\LabTest\Application\LabTest\Listener\LabTestArchivedListener;
+use medigi\LabTest\Domain\Event\LabTest\LabTestArchived;
+use medigi\LabTest\Domain\VO\ID;
 use DateTimeImmutable;
 
 class LabTestArchivedListenerTest extends TestCase

@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Command\Update;
+namespace medigi\Tests\Application\Command\Update;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\ICD10\Application\ICD10\Command\Update\UpdateICD10Command;
-use Medigi\ICD10\Application\ICD10\Command\Update\UpdateICD10CommandHandler;
-use Medigi\ICD10\Domain\Entity\ICD10;
-use Medigi\ICD10\Domain\Repository\ICD10RepositoryInterface;
-use Medigi\ICD10\Domain\VO\ID;
+use medigi\ICD10\Application\ICD10\Command\Update\UpdateICD10Command;
+use medigi\ICD10\Application\ICD10\Command\Update\UpdateICD10CommandHandler;
+use medigi\ICD10\Domain\Entity\ICD10;
+use medigi\ICD10\Domain\Repository\ICD10RepositoryInterface;
+use medigi\ICD10\Domain\VO\ID;
 use Mockery;
 
 class UpdateICD10CommandHandlerTest extends TestCase

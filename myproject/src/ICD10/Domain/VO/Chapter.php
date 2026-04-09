@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\ICD10\Domain\VO;
+namespace medigi\ICD10\Domain\VO;
 
 class Chapter
 {

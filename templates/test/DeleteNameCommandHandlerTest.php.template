@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Command\Delete;
+namespace ##AppName\Tests\Application\Command\Delete;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\##Application##\Application\##Name##\Command\Delete\Delete##Name##Command;
-use Medigi\##Application##\Application\##Name##\Command\Delete\Delete##Name##CommandHandler;
-use Medigi\##Application##\Domain\Entity\##Name##;
-use Medigi\##Application##\Domain\Repository\##Name##RepositoryInterface;
-use Medigi\##Application##\Domain\VO\ID;
-use Medigi\##Application##\Domain\VO\Status;
+use ##AppName\##Application##\Application\##Name##\Command\Delete\Delete##Name##Command;
+use ##AppName\##Application##\Application\##Name##\Command\Delete\Delete##Name##CommandHandler;
+use ##AppName\##Application##\Domain\Entity\##Name##;
+use ##AppName\##Application##\Domain\Repository\##Name##RepositoryInterface;
+use ##AppName\##Application##\Domain\VO\ID;
+use ##AppName\##Application##\Domain\VO\Status;
 use Mockery;
 
 class Delete##Name##CommandHandlerTest extends TestCase

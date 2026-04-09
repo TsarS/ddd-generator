@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Domain\Event;
+namespace medigi\Tests\Domain\Event;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\LabTest\Domain\Event\LabTest\LabTestRenamed;
-use Medigi\LabTest\Domain\VO\ID;
+use medigi\LabTest\Domain\Event\LabTest\LabTestRenamed;
+use medigi\LabTest\Domain\VO\ID;
 
 class LabTestRenamedTest extends TestCase
 {

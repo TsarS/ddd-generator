@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Command\Create;
+namespace medigi\Tests\Application\Command\Create;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\ICD10\Application\ICD10\Command\Create\CreateICD10Command;
-use Medigi\ICD10\Application\ICD10\Command\Create\CreateICD10CommandHandler;
-use Medigi\ICD10\Domain\Entity\ICD10;
-use Medigi\ICD10\Domain\Repository\ICD10RepositoryInterface;
-use Medigi\ICD10\Domain\VO\ID;
+use medigi\ICD10\Application\ICD10\Command\Create\CreateICD10Command;
+use medigi\ICD10\Application\ICD10\Command\Create\CreateICD10CommandHandler;
+use medigi\ICD10\Domain\Entity\ICD10;
+use medigi\ICD10\Domain\Repository\ICD10RepositoryInterface;
+use medigi\ICD10\Domain\VO\ID;
 use Mockery;
 
 class CreateICD10CommandHandlerTest extends TestCase

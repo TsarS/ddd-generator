@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\ICD10\Domain\VO;
+namespace medigiTests\ICD10\Domain\VO;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\ICD10\Domain\VO\Chapter;
+use medigiICD10\Domain\VO\Chapter;
 
 class ChapterTest extends TestCase
 {

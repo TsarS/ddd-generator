@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Command\Update;
+namespace ##AppName\Tests\Application\Command\Update;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\##Application##\Application\##Name##\Command\Update\Update##Name##Command;
-use Medigi\##Application##\Application\##Name##\Command\Update\Update##Name##CommandHandler;
-use Medigi\##Application##\Domain\Entity\##Name##;
-use Medigi\##Application##\Domain\Repository\##Name##RepositoryInterface;
-use Medigi\##Application##\Domain\VO\ID;
+use ##AppName\##Application##\Application\##Name##\Command\Update\Update##Name##Command;
+use ##AppName\##Application##\Application\##Name##\Command\Update\Update##Name##CommandHandler;
+use ##AppName\##Application##\Domain\Entity\##Name##;
+use ##AppName\##Application##\Domain\Repository\##Name##RepositoryInterface;
+use ##AppName\##Application##\Domain\VO\ID;
 use Mockery;
 
 class Update##Name##CommandHandlerTest extends TestCase

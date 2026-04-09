@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\LabTest\Domain\Entity;
+namespace medigi\LabTest\Domain\Entity;
 
-use Medigi\LabTest\Domain\Entity\Aggregate;
-use Medigi\LabTest\Domain\Entity\EventTrait;
-use Medigi\LabTest\Domain\VO\ID;
-use Medigi\LabTest\Domain\VO\Status;
-use Medigi\LabTest\Domain\Event\LabTest\LabTestCreated;
-use Medigi\LabTest\Domain\Event\LabTest\LabTestRenamed;
-use Medigi\LabTest\Domain\Event\LabTest\LabTestDeleted;
-use Medigi\LabTest\Domain\Event\LabTest\LabTestArchived;
-use Medigi\LabTest\Domain\Event\LabTest\LabTestReinstated;
-use Medigi\LabTest\Domain\Exception\LabTest\LabTestEmptyNameException;
+use medigi\LabTest\Domain\Entity\Aggregate;
+use medigi\LabTest\Domain\Entity\EventTrait;
+use medigi\LabTest\Domain\VO\ID;
+use medigi\LabTest\Domain\VO\Status;
+use medigi\LabTest\Domain\Event\LabTest\LabTestCreated;
+use medigi\LabTest\Domain\Event\LabTest\LabTestRenamed;
+use medigi\LabTest\Domain\Event\LabTest\LabTestDeleted;
+use medigi\LabTest\Domain\Event\LabTest\LabTestArchived;
+use medigi\LabTest\Domain\Event\LabTest\LabTestReinstated;
+use medigi\LabTest\Domain\Exception\LabTest\LabTestEmptyNameException;
 use DateTimeImmutable;
 
 class LabTest extends Aggregate

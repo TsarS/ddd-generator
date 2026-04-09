@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\ICD10\Domain\Entity;
+namespace medigi\ICD10\Domain\Entity;
 
-use Medigi\ICD10\Domain\VO\ID;
+use medigi\ICD10\Domain\VO\ID;
 use DateTimeImmutable;
 
 class ICD10

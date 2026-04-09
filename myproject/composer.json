@@ -6,11 +6,11 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
-    "Medigi\\LabTest\\": "src/LabTest/",
-    "Medigi\\ICD10\\": "src/ICD10/"
+    "medigi\\LabTest\\": "src/LabTest/",
+    "medigi\\ICD10\\": "src/ICD10/"
 },
     "autoload-dev": {
-    "Medigi\\Tests\\": "tests/"
+    "medigi\\Tests\\": "tests/"
 },
     "require": {
         "php": "^8.0"

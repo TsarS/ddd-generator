@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Listener;
+namespace medigi\Tests\Application\Listener;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\LabTest\Application\LabTest\Listener\LabTestCreatedListener;
-use Medigi\LabTest\Domain\Event\LabTest\LabTestCreated;
-use Medigi\LabTest\Domain\VO\ID;
+use medigi\LabTest\Application\LabTest\Listener\LabTestCreatedListener;
+use medigi\LabTest\Domain\Event\LabTest\LabTestCreated;
+use medigi\LabTest\Domain\VO\ID;
 use Mockery;
 
 class LabTestCreatedListenerTest extends TestCase

@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Medigi\Tests\Application\Command\Create;
+namespace medigi\Tests\Application\Command\Create;
 
 use PHPUnit\Framework\TestCase;
-use Medigi\LabTest\Application\LabTest\Command\Create\CreateLabTestCommand;
-use Medigi\LabTest\Application\LabTest\Command\Create\CreateLabTestCommandHandler;
-use Medigi\LabTest\Domain\Entity\LabTest;
-use Medigi\LabTest\Domain\Repository\LabTestRepositoryInterface;
-use Medigi\LabTest\Domain\VO\ID;
+use medigi\LabTest\Application\LabTest\Command\Create\CreateLabTestCommand;
+use medigi\LabTest\Application\LabTest\Command\Create\CreateLabTestCommandHandler;
+use medigi\LabTest\Domain\Entity\LabTest;
+use medigi\LabTest\Domain\Repository\LabTestRepositoryInterface;
+use medigi\LabTest\Domain\VO\ID;
 use Mockery;
 
 class CreateLabTestCommandHandlerTest extends TestCase

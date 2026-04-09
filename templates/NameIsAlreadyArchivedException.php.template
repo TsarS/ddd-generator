@@ -1,0 +1,14 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Domain\Exception\##Name##;
+
+use ##Application##\##Name##\Domain\VO\ID;
+
+class ##Name##IsAlreadyArchivedException extends \DomainException
+{
+    public function __construct(ID $id)
+    {
+        parent::__construct("##Name## with ID {$id->toString()} is already archived.");
+    }
+}

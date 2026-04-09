@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  ddd-generator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - ./my-php.ini:/usr/local/etc/php/my-php.ini # Adjust path based on your PHP image
+    working_dir: /app
+

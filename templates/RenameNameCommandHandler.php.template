@@ -1,0 +1,28 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Application\##Name##\Command\Rename;
+
+use ##Application##\##Name##\Domain\VO\ID;
+
+class Rename##Name##CommandHandler
+{
+    public function __construct(
+        private \##Application##\##Name##\Domain\Repository\##Name##RepositoryInterface $repository
+    ) {
+    }
+
+    public function handle(Rename##Name##Command $command): void
+    {
+        $id = ID::fromString($command->id);
+        $##Name## = $this->repository->findById($id);
+
+        if ($##Name## === null) {
+            throw new \RuntimeException('##Name## not found');
+        }
+
+        $##Name##->rename($command->newName);
+
+        $this->repository->save($##Name##);
+    }
+}

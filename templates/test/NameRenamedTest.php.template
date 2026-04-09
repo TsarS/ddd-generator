@@ -1,0 +1,32 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\Tests\Domain\Event;
+
+use PHPUnit\Framework\TestCase;
+use Medigi\##Application##\Domain\Event\##Name##\##Name##Renamed;
+use Medigi\##Application##\Domain\VO\ID;
+
+class ##Name##RenamedTest extends TestCase
+{
+    public function testEventCreation(): void
+    {
+        $id = ID::generate();
+        $oldName = 'Old Name';
+        $newName = 'New Name';
+        $occurredOn = new \DateTimeImmutable();
+
+        $event = new ##Name##Renamed($id, $oldName, $newName, $occurredOn);
+
+        $this->assertEquals($id, $event->getId());
+        $this->assertEquals($oldName, $event->getOldName());
+        $this->assertEquals($newName, $event->getNewName());
+    }
+
+    public function testEventHasCorrectName(): void
+    {
+        $event = new ##Name##Renamed(ID::generate(), 'Old', 'New', new \DateTimeImmutable());
+
+        $this->assertEquals('##Name##Renamed', $event->getEventName());
+    }
+}

@@ -1,0 +1,17 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Application\##Name##\Query\GetByName;
+
+class GetByName##Name##QueryHandler
+{
+    public function __construct(
+        private \##Application##\##Name##\Domain\Repository\##Name##RepositoryInterface $repository
+    ) {
+    }
+
+    public function handle(GetByName##Name##Query $query): ?\##Application##\##Name##\Domain\Entity\##Name##
+    {
+        return $this->repository->findByName($query->name);
+    }
+}

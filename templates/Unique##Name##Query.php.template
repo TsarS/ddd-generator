@@ -1,0 +1,13 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Application\##Name##\Query\Unique;
+
+class Unique##Name##Query
+{
+    public function __construct(
+        public readonly string $name,
+        public readonly ?string $excludeId = null
+    ) {
+    }
+}

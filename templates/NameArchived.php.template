@@ -1,0 +1,26 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Domain\Event\##Name##;
+
+use ##Application##\##Name##\Domain\VO\ID;
+
+class ##Name##Archived extends DomainEvent
+{
+    public function __construct(
+        ID $aggregateId,
+        private string $name
+    ) {
+        parent::__construct($aggregateId);
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getEventType(): string
+    {
+        return '##Name##Archived';
+    }
+}

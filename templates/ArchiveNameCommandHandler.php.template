@@ -1,0 +1,28 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Application\##Name##\Command\Archive;
+
+use ##Application##\##Name##\Domain\VO\ID;
+
+class Archive##Name##CommandHandler
+{
+    public function __construct(
+        private \##Application##\##Name##\Domain\Repository\##Name##RepositoryInterface $repository
+    ) {
+    }
+
+    public function handle(Archive##Name##Command $command): void
+    {
+        $id = ID::fromString($command->id);
+        $##Name## = $this->repository->findById($id);
+
+        if ($##Name## === null) {
+            throw new \RuntimeException('##Name## not found');
+        }
+
+        $##Name##->archive();
+
+        $this->repository->save($##Name##);
+    }
+}

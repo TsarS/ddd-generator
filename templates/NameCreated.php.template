@@ -1,0 +1,32 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Domain\Event\##Name##;
+
+use ##Application##\##Name##\Domain\VO\ID;
+
+class ##Name##Created extends DomainEvent
+{
+    public function __construct(
+        ID $aggregateId,
+        private string $name,
+        private \DateTimeImmutable $createdAt
+    ) {
+        parent::__construct($aggregateId);
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getCreatedAt(): \DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function getEventType(): string
+    {
+        return '##Name##Created';
+    }
+}

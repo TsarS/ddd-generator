@@ -1,0 +1,48 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\Tests\Application\Command\Create;
+
+use PHPUnit\Framework\TestCase;
+use Medigi\##Application##\Application\##Name##\Command\Create\Create##Name##Command;
+use Medigi\##Application##\Application\##Name##\Command\Create\Create##Name##CommandHandler;
+use Medigi\##Application##\Domain\Entity\##Name##;
+use Medigi\##Application##\Domain\Repository\##Name##RepositoryInterface;
+use Medigi\##Application##\Domain\VO\ID;
+use Mockery;
+
+class Create##Name##CommandHandlerTest extends TestCase
+{
+    private Create##Name##CommandHandler $handler;
+    private $repository;
+
+    protected function setUp(): void
+    {
+        $this->repository = Mockery::mock(##Name##RepositoryInterface::class);
+        $this->handler = new Create##Name##CommandHandler($this->repository);
+    }
+
+    public function testHandleCreates##Name##(): void
+    {
+        $command = new Create##Name##Command('Test Name');
+
+        $this->repository
+            ->shouldReceive('save')
+            ->once()
+            ->with(Mockery::type(##Name##::class));
+
+        $result = $this->handler->handle($command);
+
+        $this->assertInstanceOf(##Name##::class, $result);
+        $this->assertEquals('Test Name', $result->getName());
+    }
+
+    public function testHandleWithEmptyNameThrowsException(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $command = new Create##Name##Command('');
+
+        $this->handler->handle($command);
+    }
+}

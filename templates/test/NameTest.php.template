@@ -1,0 +1,96 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\Tests\Domain\Entity;
+
+use PHPUnit\Framework\TestCase;
+use Medigi\##Application##\Domain\Entity\##Name##;
+use Medigi\##Application##\Domain\VO\ID;
+use Medigi\##Application##\Domain\VO\Status;
+use Medigi\##Application##\Domain\Exception\##Name##\##Name##EmptyNameException;
+use Medigi\##Application##\Domain\Exception\##Name##\##Name##IsAlreadyActiveException;
+use Medigi\##Application##\Domain\Exception\##Name##\##Name##IsAlreadyArchivedException;
+
+class ##Name##Test extends TestCase
+{
+    public function testCreate(): void
+    {
+        $id = ID::generate();
+        $name = 'Test ##Name##';
+
+        $##name## = ##Name##::create($id, $name);
+
+        $this->assertEquals($id, $##name##->getId());
+        $this->assertEquals($name, $##name##->getName());
+        $this->assertEquals(Status::Active, $##name##->getStatus());
+    }
+
+    public function testCreateWithEmptyNameThrowsException(): void
+    {
+        $id = ID::generate();
+        $this->expectException(##Name##EmptyNameException::class);
+
+        ##Name##::create($id, '');
+    }
+
+    public function testRename(): void
+    {
+        $id = ID::generate();
+        $##name## = ##Name##::create($id, 'Old Name');
+
+        $##name##->rename('New Name');
+
+        $this->assertEquals('New Name', $##name##->getName());
+    }
+
+    public function testArchive(): void
+    {
+        $id = ID::generate();
+        $##name## = ##Name##::create($id, 'Test');
+
+        $##name##->archive();
+
+        $this->assertEquals(Status::Archived, $##name##->getStatus());
+    }
+
+    public function testArchiveAlreadyArchivedThrowsException(): void
+    {
+        $id = ID::generate();
+        $##name## = ##Name##::create($id, 'Test');
+        $##name##->archive();
+
+        $this->expectException(##Name##IsAlreadyArchivedException::class);
+        $##name##->archive();
+    }
+
+    public function testReinstate(): void
+    {
+        $id = ID::generate();
+        $##name## = ##Name##::create($id, 'Test');
+        $##name##->archive();
+
+        $##name##->reinstate();
+
+        $this->assertEquals(Status::Active, $##name##->getStatus());
+    }
+
+    public function testReinstateArchivedNotAllowed(): void
+    {
+        $id = ID::generate();
+        $##name## = ##Name##::create($id, 'Test');
+        $##name##->archive();
+
+        $this->expectException(##Name##IsAlreadyActiveException::class);
+        $##name##->reinstate();
+    }
+
+    public function testDelete(): void
+    {
+        $id = ID::generate();
+        $##name## = ##Name##::create($id, 'Test');
+
+        $##name##->delete();
+
+        $this->assertEquals(Status::Deleted, $##name##->getStatus());
+    }
+}

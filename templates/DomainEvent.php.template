@@ -1,0 +1,37 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Domain\Event\##Name##;
+
+use ##Application##\##Name##\Domain\VO\ID;
+
+abstract class DomainEvent
+{
+    private string $eventId;
+    private \DateTimeImmutable $occurredAt;
+
+    public function __construct(
+        protected ID $aggregateId,
+        string $eventId = null
+    ) {
+        $this->eventId = $eventId ?? (new \Symfony\Component\Uid\Ulid())->toRfc4122();
+        $this->occurredAt = new \DateTimeImmutable();
+    }
+
+    public function getAggregateId(): ID
+    {
+        return $this->aggregateId;
+    }
+
+    public function getEventId(): string
+    {
+        return $this->eventId;
+    }
+
+    public function getOccurredAt(): \DateTimeImmutable
+    {
+        return $this->occurredAt;
+    }
+
+    abstract public function getEventType(): string;
+}

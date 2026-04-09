@@ -1,0 +1,27 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Application\##Name##\Command\Create;
+
+use ##Application##\##Name##\Domain\Entity\##Name##;
+use ##Application##\##Name##\Domain\Repository\##Name##RepositoryInterface;
+use ##Application##\##Name##\Domain\VO\ID;
+
+class Create##Name##CommandHandler
+{
+    public function __construct(
+        private ##Name##RepositoryInterface $repository
+    ) {
+    }
+
+    public function handle(Create##Name##Command $command): ##Name##
+    {
+        $id = ID::generate();
+
+        $##Name## = new ##Name##($id, $command->name);
+
+        $this->repository->save($##Name##);
+
+        return $##Name##;
+    }
+}

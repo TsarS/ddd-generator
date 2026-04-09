@@ -1,0 +1,26 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\Tests\Domain\Exception;
+
+use PHPUnit\Framework\TestCase;
+use Medigi\##Application##\Domain\Exception\##Name##\##Name##EmptyNameException;
+use Medigi\##Application##\Domain\Entity\##Name##;
+use Medigi\##Application##\Domain\VO\ID;
+
+class ##Name##EmptyNameExceptionTest extends TestCase
+{
+    public function testExceptionMessage(): void
+    {
+        $exception = new ##Name##EmptyNameException();
+
+        $this->assertStringContainsString('empty', strtolower($exception->getMessage()));
+    }
+
+    public function testExceptionCanBeThrownFromEntity(): void
+    {
+        $this->expectException(##Name##EmptyNameException::class);
+
+        ##Name##::create(ID::generate(), '');
+    }
+}

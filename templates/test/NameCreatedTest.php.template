@@ -1,0 +1,31 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\Tests\Domain\Event;
+
+use PHPUnit\Framework\TestCase;
+use Medigi\##Application##\Domain\Event\##Name##\##Name##Created;
+use Medigi\##Application##\Domain\VO\ID;
+
+class ##Name##CreatedTest extends TestCase
+{
+    public function testEventCreation(): void
+    {
+        $id = ID::generate();
+        $name = 'Test';
+        $occurredOn = new \DateTimeImmutable();
+
+        $event = new ##Name##Created($id, $name, $occurredOn);
+
+        $this->assertEquals($id, $event->getId());
+        $this->assertEquals($name, $event->getName());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $event->getOccurredOn());
+    }
+
+    public function testEventHasCorrectName(): void
+    {
+        $event = new ##Name##Created(ID::generate(), 'Test', new \DateTimeImmutable());
+
+        $this->assertEquals('##Name##Created', $event->getEventName());
+    }
+}

@@ -1,0 +1,46 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\Tests\Application\Command\Delete;
+
+use PHPUnit\Framework\TestCase;
+use Medigi\##Application##\Application\##Name##\Command\Delete\Delete##Name##Command;
+use Medigi\##Application##\Application\##Name##\Command\Delete\Delete##Name##CommandHandler;
+use Medigi\##Application##\Domain\Entity\##Name##;
+use Medigi\##Application##\Domain\Repository\##Name##RepositoryInterface;
+use Medigi\##Application##\Domain\VO\ID;
+use Medigi\##Application##\Domain\VO\Status;
+use Mockery;
+
+class Delete##Name##CommandHandlerTest extends TestCase
+{
+    private Delete##Name##CommandHandler $handler;
+    private $repository;
+
+    protected function setUp(): void
+    {
+        $this->repository = Mockery::mock(##Name##RepositoryInterface::class);
+        $this->handler = new Delete##Name##CommandHandler($this->repository);
+    }
+
+    public function testHandleDeletes##Name##(): void
+    {
+        $id = ID::generate();
+        $entity = ##Name##::create($id, 'Test');
+
+        $command = new Delete##Name##Command($id);
+
+        $this->repository
+            ->shouldReceive('findById')
+            ->with($id)
+            ->andReturn($entity);
+        $this->repository
+            ->shouldReceive('save')
+            ->once()
+            ->with($entity);
+
+        $this->handler->handle($command);
+
+        $this->assertEquals(Status::Deleted, $entity->getStatus());
+    }
+}

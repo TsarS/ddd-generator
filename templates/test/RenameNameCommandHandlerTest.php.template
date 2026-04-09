@@ -1,0 +1,54 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\Tests\Application\Command\Rename;
+
+use PHPUnit\Framework\TestCase;
+use Medigi\##Application##\Application\##Name##\Command\Rename\Rename##Name##Command;
+use Medigi\##Application##\Application\##Name##\Command\Rename\Rename##Name##CommandHandler;
+use Medigi\##Application##\Domain\Entity\##Name##;
+use Medigi\##Application##\Domain\Repository\##Name##RepositoryInterface;
+use Medigi\##Application##\Domain\VO\ID;
+use Mockery;
+
+class Rename##Name##CommandHandlerTest extends TestCase
+{
+    private Rename##Name##CommandHandler $handler;
+    private $repository;
+
+    protected function setUp(): void
+    {
+        $this->repository = Mockery::mock(##Name##RepositoryInterface::class);
+        $this->handler = new Rename##Name##CommandHandler($this->repository);
+    }
+
+    public function testHandleRenames##Name##(): void
+    {
+        $id = ID::generate();
+        $entity = ##Name##::create($id, 'Old Name');
+
+        $command = new Rename##Name##Command($id, 'New Name');
+
+        $this->repository
+            ->shouldReceive('findById')
+            ->with($id)
+            ->andReturn($entity);
+        $this->repository
+            ->shouldReceive('save')
+            ->once()
+            ->with($entity);
+
+        $this->handler->handle($command);
+
+        $this->assertEquals('New Name', $entity->getName());
+    }
+
+    public function testHandleWithEmptyNameThrowsException(): void
+    {
+        $id = ID::generate();
+        $command = new Rename##Name##Command($id, '');
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->handler->handle($command);
+    }
+}

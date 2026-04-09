@@ -1,0 +1,23 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Domain\Repository;
+
+use ##Application##\##Name##\Domain\Entity\##Name##;
+use ##Application##\##Name##\Domain\VO\ID;
+
+interface ##Name##RepositoryInterface
+{
+    public function save(##Name## $##Name##): void;
+
+    public function findById(ID $id): ?##Name##;
+
+    /** @return ##Name##[] */
+    public function findAll(): array;
+
+    public function findByName(string $name): ?##Name##;
+
+    public function isNameUnique(string $name, ?ID $excludeId = null): bool;
+
+    public function delete(##Name## $##Name##): void;
+}

@@ -1,0 +1,59 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\Tests\Domain\Repository;
+
+use PHPUnit\Framework\TestCase;
+use Medigi\##Application##\Domain\Repository\##Name##RepositoryInterface;
+use Medigi\##Application##\Domain\Entity\##Name##;
+use Medigi\##Application##\Domain\VO\ID;
+use Mockery;
+
+class ##Name##RepositoryTest extends TestCase
+{
+    public function testRepositoryInterfaceExists(): void
+    {
+        $this->assertTrue(
+            interface_exists(##Name##RepositoryInterface::class),
+            '##Name##RepositoryInterface should exist'
+        );
+    }
+
+    public function testRepositoryHasRequiredMethods(): void
+    {
+        $reflection = new \ReflectionClass(##Name##RepositoryInterface::class);
+        $methods = array_map(fn($m) => $m->getName(), $reflection->getMethods());
+
+        $this->assertContains('save', $methods);
+        $this->assertContains('findById', $methods);
+    }
+
+    public function testSaveMethodAccepts##Name##(): void
+    {
+        $repository = Mockery::mock(##Name##RepositoryInterface::class);
+        $entity = ##Name##::create(ID::generate(), 'Test');
+
+        $repository->shouldReceive('save')
+            ->once()
+            ->with($entity);
+
+        $repository->save($entity);
+
+        $this->assertTrue(true);
+    }
+
+    public function testFindByIdReturns##Name##OrNull(): void
+    {
+        $repository = Mockery::mock(##Name##RepositoryInterface::class);
+        $id = ID::generate();
+        $entity = ##Name##::create($id, 'Test');
+
+        $repository->shouldReceive('findById')
+            ->with($id)
+            ->andReturn($entity);
+
+        $result = $repository->findById($id);
+
+        $this->assertSame($entity, $result);
+    }
+}

@@ -1,0 +1,28 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Application\##Name##\Command\Delete;
+
+use ##Application##\##Name##\Domain\VO\ID;
+
+class Delete##Name##CommandHandler
+{
+    public function __construct(
+        private \##Application##\##Name##\Domain\Repository\##Name##RepositoryInterface $repository
+    ) {
+    }
+
+    public function handle(Delete##Name##Command $command): void
+    {
+        $id = ID::fromString($command->id);
+        $##Name## = $this->repository->findById($id);
+
+        if ($##Name## === null) {
+            throw new \RuntimeException('##Name## not found');
+        }
+
+        $##Name##->delete();
+
+        $this->repository->save($##Name##);
+    }
+}

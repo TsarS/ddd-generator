@@ -1,0 +1,15 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Application\##Name##\Command\Reinstate;
+
+use Symfony\Component\Validator\Constraints as Assert;
+
+class Reinstate##Name##Command
+{
+    public function __construct(
+        #[Assert\NotBlank(message: 'ID is required')]
+        public readonly string $id
+    ) {
+    }
+}

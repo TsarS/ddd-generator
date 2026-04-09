@@ -1,0 +1,25 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Application\##Name##\Query\GetAll;
+
+use ##Application##\##Name##\Domain\Entity\##Name##;
+
+class GetAll##Name##QueryHandler
+{
+    public function __construct(
+        private \##Application##\##Name##\Domain\Repository\##Name##RepositoryInterface $repository
+    ) {
+    }
+
+    /**
+     * @return ##Name##[]
+     */
+    public function handle(GetAll##Name##Query $query): array
+    {
+        $offset = ($query->page - 1) * $query->limit;
+        $items = $this->repository->findAll();
+
+        return array_slice($items, $offset, $query->limit);
+    }
+}

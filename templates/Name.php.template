@@ -1,0 +1,98 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Domain\Entity;
+
+use ##Application##\##Name##\Domain\VO\ID;
+use ##Application##\##Name##\Domain\VO\Status;
+use ##Application##\##Name##\Domain\Event\##Name##\{##Name##Created, ##Name##Renamed, ##Name##Deleted, ##Name##Archived, ##Name##Reinstated};
+use ##Application##\##Name##\Domain\Exception\##Name##\{##Name##EmptyNameException, ##Name##IsAlreadyActiveException, ##Name##IsAlreadyArchivedException};
+
+class ##Name##
+{
+    use ##Name##EventTrait;
+
+    private ID $id;
+    private string $name;
+    private Status $status;
+    private \DateTimeImmutable $createdAt;
+
+    public function __construct(ID $id, string $name)
+    {
+        if (empty(trim($name))) {
+            throw new ##Name##EmptyNameException();
+        }
+
+        $this->id = $id;
+        $this->name = $name;
+        $this->status = Status::active();
+        $this->createdAt = new \DateTimeImmutable();
+
+        $this->recordEvent(new ##Name##Created($this->id, $this->name, $this->createdAt));
+    }
+
+    public function getId(): ID
+    {
+        return $this->id;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getStatus(): Status
+    {
+        return $this->status;
+    }
+
+    public function getCreatedAt(): \DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function rename(string $newName): void
+    {
+        if (empty(trim($newName))) {
+            throw new ##Name##EmptyNameException();
+        }
+
+        if ($this->status->isArchived()) {
+            throw new ##Name##IsAlreadyArchivedException();
+        }
+
+        $oldName = $this->name;
+        $this->name = $newName;
+        $this->recordEvent(new ##Name##Renamed($this->id, $oldName, $newName));
+    }
+
+    public function delete(): void
+    {
+        if ($this->status->isDeleted()) {
+            return;
+        }
+
+        $this->status = Status::deleted();
+        $this->recordEvent(new ##Name##Deleted($this->id, $this->name));
+    }
+
+    public function archive(): void
+    {
+        if ($this->status->isArchived()) {
+            throw new ##Name##IsAlreadyActiveException();
+        }
+
+        $this->status = Status::archived();
+        $this->recordEvent(new ##Name##Archived($this->id, $this->name));
+    }
+
+    public function reinstate(): void
+    {
+        if (!$this->status->isArchived()) {
+            throw new ##Name##IsAlreadyArchivedException();
+        }
+
+        $this->status = Status::active();
+        $this->recordEvent(new ##Name##Reinstated($this->id, $this->name));
+    }
+}

@@ -1,0 +1,56 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\Tests\Application\Query\GetById;
+
+use PHPUnit\Framework\TestCase;
+use Medigi\##Application##\Application\##Name##\Query\GetById\GetById##Name##Query;
+use Medigi\##Application##\Application\##Name##\Query\GetById\GetById##Name##QueryHandler;
+use Medigi\##Application##\Domain\Entity\##Name##;
+use Medigi\##Application##\Domain\Repository\##Name##RepositoryInterface;
+use Medigi\##Application##\Domain\VO\ID;
+use Mockery;
+
+class GetById##Name##QueryHandlerTest extends TestCase
+{
+    private GetById##Name##QueryHandler $handler;
+    private $repository;
+
+    protected function setUp(): void
+    {
+        $this->repository = Mockery::mock(##Name##RepositoryInterface::class);
+        $this->handler = new GetById##Name##QueryHandler($this->repository);
+    }
+
+    public function testHandleReturns##Name##(): void
+    {
+        $id = ID::generate();
+        $entity = ##Name##::create($id, 'Test');
+
+        $query = new GetById##Name##Query($id);
+
+        $this->repository
+            ->shouldReceive('findById')
+            ->with($id)
+            ->andReturn($entity);
+
+        $result = $this->handler->handle($query);
+
+        $this->assertSame($entity, $result);
+    }
+
+    public function testHandleReturnsNullWhenNotFound(): void
+    {
+        $id = ID::generate();
+        $query = new GetById##Name##Query($id);
+
+        $this->repository
+            ->shouldReceive('findById')
+            ->with($id)
+            ->andReturn(null);
+
+        $result = $this->handler->handle($query);
+
+        $this->assertNull($result);
+    }
+}

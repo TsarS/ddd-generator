@@ -1,0 +1,16 @@
+{
+  "subscribers": [
+    {
+      "source": "LabTest",
+      "event": "Created",
+      "target": "ICD10",
+      "description": "When LabTest is created, create related ICD10 entry"
+    },
+    {
+      "source": "LabTest",
+      "event": "Archived",
+      "target": "ICD10",
+      "description": "When LabTest is archived, update related ICD10 status"
+    }
+  ]
+}

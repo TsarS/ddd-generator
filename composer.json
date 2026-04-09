@@ -1,0 +1,26 @@
+{
+    "name": "medigi/ddd-generator",
+    "description": "CLI tool to generate DDD bounded contexts, aggregates, entities, VOs, events, commands, queries and tests",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Сергей Цариков",
+            "email": "sergey.tsarikov@medigi.ru"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "symfony/console": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "YourVendor\\DDDGenerator\\": "src/"
+        }
+    },
+    "bin": [
+        "ddd"
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

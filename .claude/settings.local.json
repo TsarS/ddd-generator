@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php ddd.php create test --name=LabTest)",
+      "Bash(docker-compose run:*)",
+      "Bash(docker run:*)",
+      "Bash(dir //c/Development/test/srx/src/LabTest/Domain/Entity/)",
+      "Bash(rm -rf C:/Development/ddd/LabTest)",
+      "Bash(mkdir -p C:/Development/test/srx)",
+      "Bash(ls templates/*.php.template)"
+    ]
+  }
+}

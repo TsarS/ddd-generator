@@ -1,0 +1,20 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Application\##Name##\Query\Unique;
+
+use ##Application##\##Name##\Domain\VO\ID;
+
+class Unique##Name##QueryHandler
+{
+    public function __construct(
+        private \##Application##\##Name##\Domain\Repository\##Name##RepositoryInterface $repository
+    ) {
+    }
+
+    public function handle(Unique##Name##Query $query): bool
+    {
+        $excludeId = $query->excludeId ? ID::fromString($query->excludeId) : null;
+        return $this->repository->isNameUnique($query->name, $excludeId);
+    }
+}

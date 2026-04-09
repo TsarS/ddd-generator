@@ -1,0 +1,12 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Domain\Exception\##Name##;
+
+class ##Name##EmptyNameException extends \DomainException
+{
+    public function __construct()
+    {
+        parent::__construct("##Name## name cannot be empty.");
+    }
+}

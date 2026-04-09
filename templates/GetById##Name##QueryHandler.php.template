@@ -1,0 +1,20 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Application\##Name##\Query\GetById;
+
+use ##Application##\##Name##\Domain\VO\ID;
+
+class GetById##Name##QueryHandler
+{
+    public function __construct(
+        private \##Application##\##Name##\Domain\Repository\##Name##RepositoryInterface $repository
+    ) {
+    }
+
+    public function handle(GetById##Name##Query $query): ?\##Application##\##Name##\Domain\Entity\##Name##
+    {
+        $id = ID::fromString($query->id);
+        return $this->repository->findById($id);
+    }
+}

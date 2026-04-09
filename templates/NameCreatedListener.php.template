@@ -1,0 +1,14 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\##Name##\Application\##Name##\Listener;
+
+use ##Application##\##Name##\Domain\Event\##Name##\##Name##Created;
+
+class ##Name##CreatedListener
+{
+    public function __invoke(##Name##Created $event): void
+    {
+        // TODO: Implement business logic (e.g., send notification, update search index)
+    }
+}

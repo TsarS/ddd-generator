@@ -1,0 +1,30 @@
+{
+  "appName": "medigi",
+  "aggregates": [
+    {
+      "name": "LabTest",
+      "isAggregate": true,
+      "properties": [
+        {"name": "name", "type": "string", "validations": ["notEmpty"]},
+        {"name": "description", "type": "string", "nullable": true},
+        {"name": "category", "type": "Category", "isVO": true, "nullable": true},
+        {"name": "priority", "type": "Priority", "isVO": true}
+      ],
+      "events": ["Created", "Renamed", "Deleted", "Archived", "Reinstated"],
+      "commands": ["Create", "Archive", "Delete", "Reinstate", "Rename"],
+      "queries": ["GetAll", "GetById", "GetByName", "Unique"]
+    },
+    {
+      "name": "ICD10",
+      "isAggregate": false,
+      "properties": [
+        {"name": "code", "type": "string", "validations": ["notEmpty"]},
+        {"name": "description", "type": "string", "nullable": true},
+        {"name": "chapter", "type": "Chapter", "isVO": true, "nullable": true}
+      ],
+      "events": ["Created", "Updated"],
+      "commands": ["Create", "Update"],
+      "queries": ["GetByCode", "GetAll"]
+    }
+  ]
+}

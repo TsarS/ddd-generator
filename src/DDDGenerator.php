@@ -11,7 +11,8 @@ class DDDGenerator
 
     public function generate(string $appName, string $dddConfigPath, ?string $eventsConfigPath = null)
     {
-        $basePath = __DIR__ . "/../$appName";
+        // Use current working directory as base for project output
+        $basePath = getcwd() . "/$appName";
 
         // Загружаем основную конфигурацию ddd.json
         if (!file_exists($dddConfigPath)) {

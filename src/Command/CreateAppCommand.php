@@ -64,14 +64,14 @@ final class CreateAppCommand extends Command
 
         $generator = new DDDGenerator();
         try {
+            $projectPath = getcwd() . "/$appName";
             $generator->generate($appName, $configPath, $eventsPath);
+            $output->writeln("<info>Структура успешно создана в: $projectPath</info>");
+            return Command::SUCCESS;
         } catch (\InvalidArgumentException $e) {
             $output->writeln('<error>' . $e->getMessage() . '</error>');
             return Command::FAILURE;
         }
-
-        $output->writeln('<info>Структура успешно создана!</info>');
-        return Command::SUCCESS;
     }
 
     private function resolvePath(string $path): string

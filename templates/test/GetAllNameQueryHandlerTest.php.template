@@ -1,0 +1,38 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\Tests\Application\Query\GetAll;
+
+use PHPUnit\Framework\TestCase;
+use Medigi\##Application##\Application\##Name##\Query\GetAll\GetAll##Name##Query;
+use Medigi\##Application##\Application\##Name##\Query\GetAll\GetAll##Name##QueryHandler;
+use Medigi\##Application##\Domain\Entity\##Name##;
+use Medigi\##Application##\Domain\Repository\##Name##RepositoryInterface;
+use Mockery;
+
+class GetAll##Name##QueryHandlerTest extends TestCase
+{
+    private GetAll##Name##QueryHandler $handler;
+    private $repository;
+
+    protected function setUp(): void
+    {
+        $this->repository = Mockery::mock(##Name##RepositoryInterface::class);
+        $this->handler = new GetAll##Name##QueryHandler($this->repository);
+    }
+
+    public function testHandleReturnsAll##Name##s(): void
+    {
+        $entity1 = ##Name##::create(\Medigi\##Application##\Domain\VO\ID::generate(), 'Test 1');
+        $entity2 = ##Name##::create(\Medigi\##Application##\Domain\VO\ID::generate(), 'Test 2');
+
+        $this->repository
+            ->shouldReceive('findAll')
+            ->andReturn([$entity1, $entity2]);
+
+        $query = new GetAll##Name##Query();
+        $result = $this->handler->handle($query);
+
+        $this->assertCount(2, $result);
+    }
+}

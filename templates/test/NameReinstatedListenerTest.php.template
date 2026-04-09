@@ -1,0 +1,30 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\Tests\Application\Listener;
+
+use PHPUnit\Framework\TestCase;
+use Medigi\##Application##\Application\##Name##\Listener\##Name##ReinstatedListener;
+use Medigi\##Application##\Domain\Event\##Name##\##Name##Reinstated;
+use Medigi\##Application##\Domain\VO\ID;
+use DateTimeImmutable;
+
+class ##Name##ReinstatedListenerTest extends TestCase
+{
+    private ##Name##ReinstatedListener $listener;
+
+    protected function setUp(): void
+    {
+        $this->listener = new ##Name##ReinstatedListener();
+    }
+
+    public function testHandle(): void
+    {
+        $id = ID::generate();
+        $event = new ##Name##Reinstated($id, new DateTimeImmutable());
+
+        $this->listener->handle($event);
+
+        $this->assertTrue(true);
+    }
+}

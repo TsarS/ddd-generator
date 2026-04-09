@@ -1,0 +1,45 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\Tests\Application\Command\Update;
+
+use PHPUnit\Framework\TestCase;
+use Medigi\##Application##\Application\##Name##\Command\Update\Update##Name##Command;
+use Medigi\##Application##\Application\##Name##\Command\Update\Update##Name##CommandHandler;
+use Medigi\##Application##\Domain\Entity\##Name##;
+use Medigi\##Application##\Domain\Repository\##Name##RepositoryInterface;
+use Medigi\##Application##\Domain\VO\ID;
+use Mockery;
+
+class Update##Name##CommandHandlerTest extends TestCase
+{
+    private Update##Name##CommandHandler $handler;
+    private $repository;
+
+    protected function setUp(): void
+    {
+        $this->repository = Mockery::mock(##Name##RepositoryInterface::class);
+        $this->handler = new Update##Name##CommandHandler($this->repository);
+    }
+
+    public function testHandleUpdates##Name##(): void
+    {
+        $id = ID::generate();
+        $entity = ##Name##::create($id, 'Old Name');
+
+        $this->repository
+            ->shouldReceive('findById')
+            ->with($id)
+            ->andReturn($entity);
+
+        $this->repository
+            ->shouldReceive('save')
+            ->once()
+            ->with(Mockery::type(##Name##::class));
+
+        $command = new Update##Name##Command($id, 'New Name');
+        $result = $this->handler->handle($command);
+
+        $this->assertSame($entity, $result);
+    }
+}

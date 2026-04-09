@@ -1,0 +1,41 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\Tests\Application\Query\GetByCode;
+
+use PHPUnit\Framework\TestCase;
+use Medigi\##Application##\Application\##Name##\Query\GetByCode\GetByCode##Name##Query;
+use Medigi\##Application##\Application\##Name##\Query\GetByCode\GetByCode##Name##QueryHandler;
+use Medigi\##Application##\Domain\Entity\##Name##;
+use Medigi\##Application##\Domain\Repository\##Name##RepositoryInterface;
+use Medigi\##Application##\Domain\VO\ID;
+use Mockery;
+
+class GetByCode##Name##QueryHandlerTest extends TestCase
+{
+    private GetByCode##Name##QueryHandler $handler;
+    private $repository;
+
+    protected function setUp(): void
+    {
+        $this->repository = Mockery::mock(##Name##RepositoryInterface::class);
+        $this->handler = new GetByCode##Name##QueryHandler($this->repository);
+    }
+
+    public function testHandleReturns##Name##ByCode(): void
+    {
+        $id = ID::generate();
+        $entity = ##Name##::create($id, 'Test');
+
+        $query = new GetByCode##Name##Query('CODE123');
+
+        $this->repository
+            ->shouldReceive('findByCode')
+            ->with('CODE123')
+            ->andReturn($entity);
+
+        $result = $this->handler->handle($query);
+
+        $this->assertSame($entity, $result);
+    }
+}

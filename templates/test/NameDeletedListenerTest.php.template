@@ -1,0 +1,30 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\Tests\Application\Listener;
+
+use PHPUnit\Framework\TestCase;
+use Medigi\##Application##\Application\##Name##\Listener\##Name##DeletedListener;
+use Medigi\##Application##\Domain\Event\##Name##\##Name##Deleted;
+use Medigi\##Application##\Domain\VO\ID;
+use DateTimeImmutable;
+
+class ##Name##DeletedListenerTest extends TestCase
+{
+    private ##Name##DeletedListener $listener;
+
+    protected function setUp(): void
+    {
+        $this->listener = new ##Name##DeletedListener();
+    }
+
+    public function testHandle(): void
+    {
+        $id = ID::generate();
+        $event = new ##Name##Deleted($id, new DateTimeImmutable());
+
+        $this->listener->handle($event);
+
+        $this->assertTrue(true);
+    }
+}

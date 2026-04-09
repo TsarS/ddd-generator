@@ -1,0 +1,41 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\Tests\Application\Query\GetByName;
+
+use PHPUnit\Framework\TestCase;
+use Medigi\##Application##\Application\##Name##\Query\GetByName\GetByName##Name##Query;
+use Medigi\##Application##\Application\##Name##\Query\GetByName\GetByName##Name##QueryHandler;
+use Medigi\##Application##\Domain\Entity\##Name##;
+use Medigi\##Application##\Domain\Repository\##Name##RepositoryInterface;
+use Medigi\##Application##\Domain\VO\ID;
+use Mockery;
+
+class GetByName##Name##QueryHandlerTest extends TestCase
+{
+    private GetByName##Name##QueryHandler $handler;
+    private $repository;
+
+    protected function setUp(): void
+    {
+        $this->repository = Mockery::mock(##Name##RepositoryInterface::class);
+        $this->handler = new GetByName##Name##QueryHandler($this->repository);
+    }
+
+    public function testHandleReturns##Name##ByName(): void
+    {
+        $id = ID::generate();
+        $entity = ##Name##::create($id, 'Unique Name');
+
+        $query = new GetByName##Name##Query('Unique Name');
+
+        $this->repository
+            ->shouldReceive('findByName')
+            ->with('Unique Name')
+            ->andReturn($entity);
+
+        $result = $this->handler->handle($query);
+
+        $this->assertSame($entity, $result);
+    }
+}

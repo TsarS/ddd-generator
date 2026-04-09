@@ -1,0 +1,38 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\Tests\Application\Query\Unique;
+
+use PHPUnit\Framework\TestCase;
+use Medigi\##Application##\Application\##Name##\Query\Unique\Unique##Name##Query;
+use Medigi\##Application##\Application\##Name##\Query\Unique\Unique##Name##QueryHandler;
+use Medigi\##Application##\Domain\Entity\##Name##;
+use Medigi\##Application##\Domain\Repository\##Name##RepositoryInterface;
+use Medigi\##Application##\Domain\VO\ID;
+use Mockery;
+
+class Unique##Name##QueryHandlerTest extends TestCase
+{
+    private Unique##Name##QueryHandler $handler;
+    private $repository;
+
+    protected function setUp(): void
+    {
+        $this->repository = Mockery::mock(##Name##RepositoryInterface::class);
+        $this->handler = new Unique##Name##QueryHandler($this->repository);
+    }
+
+    public function testHandleChecksUniqueness(): void
+    {
+        $query = new Unique##Name##Query('Unique Name');
+
+        $this->repository
+            ->shouldReceive('isUnique')
+            ->with('Unique Name')
+            ->andReturn(true);
+
+        $result = $this->handler->handle($query);
+
+        $this->assertTrue($result);
+    }
+}

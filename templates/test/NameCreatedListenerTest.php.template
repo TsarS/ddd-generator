@@ -1,0 +1,31 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\Tests\Application\Listener;
+
+use PHPUnit\Framework\TestCase;
+use Medigi\##Application##\Application\##Name##\Listener\##Name##CreatedListener;
+use Medigi\##Application##\Domain\Event\##Name##\##Name##Created;
+use Medigi\##Application##\Domain\VO\ID;
+use Mockery;
+
+class ##Name##CreatedListenerTest extends TestCase
+{
+    private ##Name##CreatedListener $listener;
+
+    protected function setUp(): void
+    {
+        $this->listener = new ##Name##CreatedListener();
+    }
+
+    public function testHandle(): void
+    {
+        $id = ID::generate();
+        $event = new ##Name##Created($id, 'Test', new \DateTimeImmutable());
+
+        $this->listener->handle($event);
+
+        // Listener should handle event without throwing
+        $this->assertTrue(true);
+    }
+}

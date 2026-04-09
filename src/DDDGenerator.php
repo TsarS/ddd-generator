@@ -70,8 +70,125 @@ class DDDGenerator
         // Генерируем composer.json
         $this->generateComposerJson($basePath, $appName, $aggregates);
 
+        // Генерируем тесты
+        $this->generateTests($basePath, $aggregates);
+
         // Создаём tests directory
         $this->createDirectory("$basePath/tests");
+    }
+
+    private function generateTests(string $basePath, array $aggregates): void
+    {
+        foreach ($aggregates as $aggregate) {
+            $this->generateAggregateTests($basePath, $aggregate);
+        }
+    }
+
+    private function generateAggregateTests(string $basePath, array $aggregate): void
+    {
+        $aggregateName = $aggregate['name'];
+        $isAggregate = $aggregate['isAggregate'] ?? true;
+        $props = $this->parseProperties($aggregate['properties'] ?? []);
+        $events = $aggregate['events'] ?? ['Created', 'Renamed', 'Deleted', 'Archived', 'Reinstated'];
+        $commands = $aggregate['commands'] ?? ['Create', 'Archive', 'Delete', 'Reinstate', 'Rename'];
+        $queries = $aggregate['queries'] ?? ['GetAll', 'GetById', 'GetByName', 'Unique'];
+
+        // Tests directory structure
+        $testPath = "$basePath/tests/$aggregateName";
+
+        // Domain Entity tests
+        $this->createDirectory("$testPath/Domain/Entity");
+        if ($isAggregate) {
+            $this->generateFromTemplate(
+                "$testPath/Domain/Entity/{$aggregateName}Test.php",
+                __DIR__ . '/../templates/test/NameTest.php.template',
+                ['##Name##' => $aggregateName, '##Application##' => $aggregateName]
+            );
+        }
+
+        // VO tests
+        $this->createDirectory("$testPath/Domain/VO");
+        $this->generateFromTemplate(
+            "$testPath/Domain/VO/IDTest.php",
+            __DIR__ . '/../templates/test/IDTest.php.template',
+            ['##Name##' => $aggregateName]
+        );
+        foreach ($props as $prop) {
+            if ($prop['isVO']) {
+                $this->generateFromTemplate(
+                    "$testPath/Domain/VO/{$prop['type']}Test.php",
+                    __DIR__ . '/../templates/test/NameVOTest.php.template',
+                    ['##Name##' => $aggregateName, '##VOName##' => $prop['type']]
+                );
+            }
+        }
+
+        // Event tests
+        $this->createDirectory("$testPath/Domain/Event/$aggregateName");
+        foreach ($events as $event) {
+            $this->generateFromTemplate(
+                "$testPath/Domain/Event/$aggregateName/{$aggregateName}{$event}Test.php",
+                __DIR__ . '/../templates/test/Name' . $event . 'Test.php.template',
+                ['##Name##' => $aggregateName, '##Application##' => $aggregateName]
+            );
+        }
+
+        // Exception tests
+        $this->createDirectory("$testPath/Domain/Exception/$aggregateName");
+        $this->generateFromTemplate(
+            "$testPath/Domain/Exception/$aggregateName/{$aggregateName}EmptyNameExceptionTest.php",
+            __DIR__ . '/../templates/test/NameEmptyNameExceptionTest.php.template',
+            ['##Name##' => $aggregateName, '##Application##' => $aggregateName]
+        );
+
+        // Repository tests
+        if ($isAggregate) {
+            $this->createDirectory("$testPath/Domain/Repository");
+            $this->generateFromTemplate(
+                "$testPath/Domain/Repository/{$aggregateName}RepositoryTest.php",
+                __DIR__ . '/../templates/test/NameRepositoryTest.php.template',
+                ['##Name##' => $aggregateName, '##Application##' => $aggregateName]
+            );
+        }
+
+        // Command Handler tests
+        foreach ($commands as $command) {
+            $this->createDirectory("$testPath/Application/$aggregateName/Command/$command");
+            $handlerTemplate = __DIR__ . '/../templates/test/' . $command . 'NameCommandHandlerTest.php.template';
+            if (file_exists($handlerTemplate)) {
+                $this->generateFromTemplate(
+                    "$testPath/Application/$aggregateName/Command/$command/{$command}{$aggregateName}CommandHandlerTest.php",
+                    $handlerTemplate,
+                    ['##Name##' => $aggregateName, '##Application##' => $aggregateName]
+                );
+            }
+        }
+
+        // Query Handler tests
+        foreach ($queries as $query) {
+            $this->createDirectory("$testPath/Application/$aggregateName/Query/$query");
+            $handlerTemplate = __DIR__ . '/../templates/test/' . $query . 'NameQueryHandlerTest.php.template';
+            if (file_exists($handlerTemplate)) {
+                $this->generateFromTemplate(
+                    "$testPath/Application/$aggregateName/Query/$query/{$query}{$aggregateName}QueryHandlerTest.php",
+                    $handlerTemplate,
+                    ['##Name##' => $aggregateName, '##Application##' => $aggregateName]
+                );
+            }
+        }
+
+        // Listener tests
+        $this->createDirectory("$testPath/Application/$aggregateName/Listener");
+        foreach ($events as $event) {
+            $listenerTemplate = __DIR__ . '/../templates/test/Name' . $event . 'ListenerTest.php.template';
+            if (file_exists($listenerTemplate)) {
+                $this->generateFromTemplate(
+                    "$testPath/Application/$aggregateName/Listener/{$aggregateName}{$event}ListenerTest.php",
+                    $listenerTemplate,
+                    ['##Name##' => $aggregateName, '##Application##' => $aggregateName]
+                );
+            }
+        }
     }
 
     private function processAggregate(string $basePath, string $appName, array $aggregate): void

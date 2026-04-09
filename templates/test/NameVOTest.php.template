@@ -1,0 +1,35 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\Tests\##Name##\Domain\VO;
+
+use PHPUnit\Framework\TestCase;
+use Medigi\##Name##\Domain\VO\##VOName##;
+
+class ##VOName##Test extends TestCase
+{
+    public function testFromString(): void
+    {
+        $value = 'test_value';
+        $vo = ##VOName##::fromString($value);
+
+        $this->assertSame($value, $vo->toString());
+    }
+
+    public function testEquals(): void
+    {
+        $value = 'test_value';
+        $vo1 = ##VOName##::fromString($value);
+        $vo2 = ##VOName##::fromString($value);
+
+        $this->assertTrue($vo1->equals($vo2));
+    }
+
+    public function testNotEquals(): void
+    {
+        $vo1 = ##VOName##::fromString('value1');
+        $vo2 = ##VOName##::fromString('value2');
+
+        $this->assertFalse($vo1->equals($vo2));
+    }
+}

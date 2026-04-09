@@ -1,45 +1,45 @@
-# Medigi DDD Generator
+# PHP DDD Generator
 
-CLI-инструмент для генерации DDD-структуры: bounded contexts, aggregates, entities, VOs, events, commands, queries, listeners и тестов.
+CLI tool to generate DDD structure: bounded contexts, aggregates, entities, VOs, events, commands, queries, listeners, and tests.
 
-## Установка
+## Installation
 
 ```bash
-composer global require medigi/ddd-generator
+composer global require tsars/ddd-generator
 ```
 
-Или клонируйте репозиторий и установите зависимости:
+Or clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/medigi/ddd-generator.git
+git clone https://github.com/TsarS/ddd-generator.git
 cd ddd-generator
 composer install
 ```
 
-## Использование
+## Usage
 
-### Базовое использование
+### Basic usage
 
 ```bash
 php ddd create <appName> --config=/path/to/ddd.json --events=/path/to/events.json
 ```
 
-### Пример
+### Example
 
 ```bash
-php ddd create medigi --config=./ddd.json --events=./events.json
+php ddd create myproject --config=./ddd.json --events=./events.json
 ```
 
-## Конфигурационные файлы
+## Configuration Files
 
-### ddd.json - Основная конфигурация
+### ddd.json - Main Configuration
 
 ```json
 {
-  "appName": "medigi",
+  "appName": "myproject",
   "aggregates": [
     {
-      "name": "LabTest",
+      "name": "Product",
       "isAggregate": true,
       "properties": [
         {"name": "name", "type": "string", "validations": ["notEmpty"]},
@@ -54,61 +54,61 @@ php ddd create medigi --config=./ddd.json --events=./events.json
 }
 ```
 
-#### Поля агрегата:
+#### Aggregate Fields:
 
-| Поле | Тип | Описание |
-|------|-----|----------|
-| `name` | string | Имя агрегата/сущности |
-| `isAggregate` | bool | Если `true` - генерирует Aggregate с status, archive, delete. Если `false` - простая Entity |
-| `properties` | array | Список свойств сущности |
-| `properties[].name` | string | Имя свойства |
-| `properties[].type` | string | PHP тип (string, int, etc.) или имя VO |
-| `properties[].nullable` | bool | Может ли быть null |
-| `properties[].isVO` | bool | Является ли тип Value Object |
-| `properties[].validations` | array | Список валидаций ( пока не реализовано) |
-| `events` | array | Список доменных событий |
-| `commands` | array | Список команд (Create, Archive, etc.) |
-| `queries` | array | Список запросов (GetAll, GetById, etc.) |
+| Field | Type | Description |
+|------|------|-------------|
+| `name` | string | Aggregate/entity name |
+| `isAggregate` | bool | If `true` - generates Aggregate with status, archive, delete. If `false` - simple Entity |
+| `properties` | array | List of entity properties |
+| `properties[].name` | string | Property name |
+| `properties[].type` | string | PHP type (string, int, etc.) or VO name |
+| `properties[].nullable` | bool | Can be null |
+| `properties[].isVO` | bool | Is this type a Value Object |
+| `properties[].validations` | array | List of validations (not yet implemented) |
+| `events` | array | List of domain events |
+| `commands` | array | List of commands (Create, Archive, etc.) |
+| `queries` | array | List of queries (GetAll, GetById, etc.) |
 
-### events.json - Межагрегатные связи
+### events.json - Inter-Aggregate Links
 
 ```json
 {
   "subscribers": [
     {
-      "source": "LabTest",
+      "source": "Product",
       "event": "Created",
-      "target": "ICD10",
-      "description": "When LabTest is created, create related ICD10 entry"
+      "target": "Category",
+      "description": "When Product is created, update Category stats"
     }
   ]
 }
 ```
 
-#### Поля subscriber:
+#### Subscriber Fields:
 
-| Поле | Тип | Описание |
-|------|-----|----------|
-| `source` | string | Имя агрегата-источника события |
-| `event` | string | Имя события (Created, Archived, etc.) |
-| `target` | string | Имя агрегата-цели, где будет создан адаптер |
-| `description` | string | Описание связи (опционально) |
+| Field | Type | Description |
+|------|------|-------------|
+| `source` | string | Source aggregate name |
+| `event` | string | Event name (Created, Archived, etc.) |
+| `target` | string | Target aggregate name where adapter will be created |
+| `description` | string | Link description (optional) |
 
-## Структура генерации
+## Generated Structure
 
-Для каждого агрегата создаётся:
+For each aggregate:
 
 ```
 src/<AggregateName>/
 ├── Domain/
 │   ├── Entity/
-│   │   ├── <AggregateName>.php          # Основная сущность
-│   │   ├── Aggregate.php                 # Базовый класс Aggregate (если isAggregate=true)
-│   │   └── EventTrait.php                # Trait для событий
+│   │   ├── <AggregateName>.php          # Main entity
+│   │   ├── Aggregate.php                 # Base Aggregate class (if isAggregate=true)
+│   │   └── EventTrait.php                # Event trait
 │   ├── VO/
 │   │   ├── ID.php                        # Value Object ID
-│   │   ├── Status.php                     # Status VO
-│   │   └── <OtherVO>.php                  # Пользовательские VOs
+│   │   ├── Status.php                    # Status VO
+│   │   └── <OtherVO>.php                 # Custom VOs
 │   ├── Event/<AggregateName>/
 │   │   ├── <AggregateName>Created.php
 │   │   ├── <AggregateName>Archived.php
@@ -131,20 +131,20 @@ src/<AggregateName>/
 │   ├── Listener/
 │   │   ├── <AggregateName>CreatedListener.php
 │   │   └── ...
-│   └── Adapter/                          # Межагрегатные адаптеры (из events.json)
+│   └── Adapter/                          # Inter-aggregate adapters (from events.json)
 │       └── <Event><Source>To<Target>Subscriber.php
 └── Infrastructure/
     ├── API/
     └── Persistance/
 ```
 
-## Примеры конфигов
+## Configuration Examples
 
-### Простой агрегат
+### Simple Aggregate
 
 ```json
 {
-  "name": "Patient",
+  "name": "User",
   "isAggregate": true,
   "properties": [
     {"name": "firstName", "type": "string"},
@@ -157,7 +157,7 @@ src/<AggregateName>/
 }
 ```
 
-### Неагрегатная сущность с Value Object
+### Non-Aggregate Entity with Value Objects
 
 ```json
 {
@@ -174,37 +174,36 @@ src/<AggregateName>/
 }
 ```
 
-В данном примере `City` будет сгенерирован как Value Object в `Domain/VO/City.php`, а не как отдельная сущность.
+In this example, `City` will be generated as a Value Object in `Domain/VO/City.php`, not as a separate entity.
 
-### С событиями и межагрегатными связями
+### With Events and Inter-Aggregate Links
 
 **ddd.json:**
 ```json
 {
-  "appName": "clinic",
+  "appName": "shop",
   "aggregates": [
     {
-      "name": "Appointment",
+      "name": "Order",
       "isAggregate": true,
       "properties": [
-        {"name": "patientId", "type": "string"},
-        {"name": "doctorId", "type": "string"},
-        {"name": "scheduledAt", "type": "string"}
+        {"name": "customerId", "type": "string"},
+        {"name": "totalAmount", "type": "Money", "isVO": true}
       ],
       "events": ["Created", "Cancelled", "Completed"],
       "commands": ["Create", "Cancel", "Complete"],
-      "queries": ["GetById", "GetAll", "GetByPatient"]
+      "queries": ["GetById", "GetAll", "GetByCustomer"]
     },
     {
-      "name": "Notification",
+      "name": "Invoice",
       "isAggregate": true,
       "properties": [
-        {"name": "message", "type": "string"},
-        {"name": "recipient", "type": "string"}
+        {"name": "amount", "type": "Money", "isVO": true},
+        {"name": "status", "type": "InvoiceStatus", "isVO": true}
       ],
-      "events": ["Sent"],
-      "commands": ["Send"],
-      "queries": ["GetByRecipient"]
+      "events": ["Generated", "Paid"],
+      "commands": ["Generate", "MarkPaid"],
+      "queries": ["GetByOrder"]
     }
   ]
 }
@@ -215,27 +214,27 @@ src/<AggregateName>/
 {
   "subscribers": [
     {
-      "source": "Appointment",
-      "event": "Created",
-      "target": "Notification",
-      "description": "Send notification when appointment is created"
+      "source": "Order",
+      "event": "Completed",
+      "target": "Invoice",
+      "description": "Generate invoice when order is completed"
     },
     {
-      "source": "Appointment",
+      "source": "Order",
       "event": "Cancelled",
-      "target": "Notification",
-      "description": "Notify patient about cancellation"
+      "target": "Invoice",
+      "description": "Cancel invoice when order is cancelled"
     }
   ]
 }
 ```
 
-## Генерируемые файлы
+## Generated Files
 
 ### Entity (Aggregate)
 
 ```php
-class LabTest extends Aggregate
+class Product extends Aggregate
 {
     use EventTrait;
 
@@ -255,19 +254,19 @@ class LabTest extends Aggregate
 ### Event Subscriber (Adapter)
 
 ```php
-class CreatedLabTestToICD10Subscriber
+class CreatedProductToCategorySubscriber
 {
-    public function handle(LabTestCreated $event): void
+    public function handle(ProductCreated $event): void
     {
-        // TODO: Implement logic to react to LabTestCreated
-        // Create or update related ICD10 entity
+        // TODO: Implement logic to react to ProductCreated
+        // Create or update related Category entity
     }
 }
 ```
 
-## Тесты
+## Tests
 
-Для каждого агрегата генерируются базовые тесты в `tests/<AggregateName>/`:
+For each aggregate, basic tests are generated in `tests/<AggregateName>/`:
 
 - `Domain/Entity/<AggregateName>Test.php`
 - `Domain/Event/<AggregateName><Event>Test.php`
@@ -275,35 +274,35 @@ class CreatedLabTestToICD10Subscriber
 - `Application/Query/<Query>/<Query><AggregateName>QueryHandlerTest.php`
 - `Domain/Repository/<AggregateName>RepositoryTest.php`
 
-## Разработка
+## Development
 
-### Структура проекта DDD Generator
+### Project Structure
 
 ```
 ddd-generator/
 ├── src/
-│   ├── DDDGenerator.php          # Основной генератор
+│   ├── DDDGenerator.php          # Main generator
 │   └── Command/
-│       └── CreateAppCommand.php  # CLI команда
-├── templates/                     # Шаблоны для генерации
+│       └── CreateAppCommand.php  # CLI command
+├── templates/                    # Templates for generation
 │   ├── *.php.template
 │   ├── test/
 │   │   └── *.php.template
 │   └── config/
 │       ├── ddd.json
 │       └── events.json
-├── ddd.php                       # Точка входа
+├── ddd.php                      # Entry point
 └── composer.json
 ```
 
-### Запуск тестов
+### Run Tests
 
 ```bash
 composer test
-# или
+# or
 ./vendor/bin/phpunit
 ```
 
-## Лицензия
+## License
 
 MIT

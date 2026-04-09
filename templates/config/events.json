@@ -1,16 +1,16 @@
 {
   "subscribers": [
     {
-      "source": "LabTest",
+      "source": "Product",
       "event": "Created",
-      "target": "ICD10",
-      "description": "When LabTest is created, create related ICD10 entry"
+      "target": "Category",
+      "description": "When Product is created, update Category stats"
     },
     {
-      "source": "LabTest",
+      "source": "Product",
       "event": "Archived",
-      "target": "ICD10",
-      "description": "When LabTest is archived, update related ICD10 status"
+      "target": "Category",
+      "description": "When Product is archived, update related Category"
     }
   ]
 }

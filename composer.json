@@ -1,12 +1,12 @@
 {
-    "name": "medigi/ddd-generator",
-    "description": "CLI tool to generate DDD bounded contexts, aggregates, entities, VOs, events, commands, queries and tests",
+    "name": "tsars/ddd-generator",
+    "description": "CLI tool to generate DDD structure: bounded contexts, aggregates, entities, VOs, events, commands, queries and tests",
     "type": "project",
     "license": "MIT",
     "authors": [
         {
-            "name": "Сергей Цариков",
-            "email": "sergey.tsarikov@medigi.ru"
+            "name": "Sergey Tsarikov",
+            "email": "sergey.tsarikov@gmail.com"
         }
     ],
     "require": {

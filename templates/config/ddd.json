@@ -1,8 +1,8 @@
 {
-  "appName": "medigi",
+  "appName": "myproject",
   "aggregates": [
     {
-      "name": "LabTest",
+      "name": "Product",
       "isAggregate": true,
       "properties": [
         {"name": "name", "type": "string", "validations": ["notEmpty"]},
@@ -15,12 +15,12 @@
       "queries": ["GetAll", "GetById", "GetByName", "Unique"]
     },
     {
-      "name": "ICD10",
+      "name": "Category",
       "isAggregate": false,
       "properties": [
         {"name": "code", "type": "string", "validations": ["notEmpty"]},
         {"name": "description", "type": "string", "nullable": true},
-        {"name": "chapter", "type": "Chapter", "isVO": true, "nullable": true}
+        {"name": "section", "type": "Section", "isVO": true, "nullable": true}
       ],
       "events": ["Created", "Updated"],
       "commands": ["Create", "Update"],

@@ -63,7 +63,12 @@ final class CreateAppCommand extends Command
         }
 
         $generator = new DDDGenerator();
-        $generator->generate($appName, $configPath, $eventsPath);
+        try {
+            $generator->generate($appName, $configPath, $eventsPath);
+        } catch (\InvalidArgumentException $e) {
+            $output->writeln('<error>' . $e->getMessage() . '</error>');
+            return Command::FAILURE;
+        }
 
         $output->writeln('<info>Структура успешно создана!</info>');
         return Command::SUCCESS;

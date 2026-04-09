@@ -14,16 +14,41 @@ class DDDGenerator
         $basePath = __DIR__ . "/../$appName";
 
         // Загружаем основную конфигурацию ddd.json
-        if (file_exists($dddConfigPath)) {
-            $this->dddConfig = json_decode(file_get_contents($dddConfigPath), true);
-        } else {
+        if (!file_exists($dddConfigPath)) {
             throw new \InvalidArgumentException("Config file not found: $dddConfigPath");
+        }
+
+        $dddContent = file_get_contents($dddConfigPath);
+        $decoded = json_decode($dddContent, true);
+        if ($decoded === null && json_last_error() !== JSON_ERROR_NONE) {
+            throw new \InvalidArgumentException(
+                "ddd.json parse error: " . json_last_error_msg() . " in file $dddConfigPath"
+            );
+        }
+        $this->dddConfig = $decoded;
+
+        if (empty($this->dddConfig['aggregates']) && !isset($this->dddConfig['name'])) {
+            throw new \InvalidArgumentException(
+                "ddd.json error: 'aggregates' array is required. Example: {\"aggregates\": [{\"name\": \"Product\", ...}]}"
+            );
         }
 
         // Загружаем конфигурацию событий events.json
         $this->eventsConfig = [];
         if ($eventsConfigPath !== null && file_exists($eventsConfigPath)) {
-            $this->eventsConfig = json_decode(file_get_contents($eventsConfigPath), true);
+            $eventsContent = file_get_contents($eventsConfigPath);
+            $decodedEvents = json_decode($eventsContent, true);
+            if ($decodedEvents === null && json_last_error() !== JSON_ERROR_NONE) {
+                throw new \InvalidArgumentException(
+                    "events.json parse error: " . json_last_error_msg() . " in file $eventsConfigPath"
+                );
+            }
+            $this->eventsConfig = $decodedEvents;
+            if (!isset($this->eventsConfig['subscribers']) || !is_array($this->eventsConfig['subscribers'])) {
+                throw new \InvalidArgumentException(
+                    "events.json error: 'subscribers' array is required. Example: {\"subscribers\": [{\"source\": \"Product\", \"event\": \"Created\", \"target\": \"Category\"}]}"
+                );
+            }
         }
 
         $aggregates = $this->dddConfig['aggregates'] ?? [$this->dddConfig];

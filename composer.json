@@ -20,7 +20,7 @@
         }
     },
     "bin": [
-        "./ddd.php"
+        "ddd.php"
     ],
     "minimum-stability": "stable",
     "prefer-stable": true

@@ -1,0 +1,22 @@
+{
+    "name": "medigi/myproject",
+    "description": "myproject bounded contexts",
+    "type": "library",
+    "license": "proprietary",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+    "Medigi\\LabTest\\": "src/LabTest/",
+    "Medigi\\ICD10\\": "src/ICD10/"
+},
+    "autoload-dev": {
+    "Medigi\\Tests\\": "tests/"
+},
+    "require": {
+        "php": "^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "mockery/mockery": "^1.6"
+    }
+}

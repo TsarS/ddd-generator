@@ -37,6 +37,10 @@ final class CreateAppCommand extends Command
             return Command::FAILURE;
         }
 
+        // Resolve relative paths from script directory or current working directory
+        $configPath = $this->resolvePath($configPath);
+        $eventsPath = $eventsPath ? $this->resolvePath($eventsPath) : null;
+
         if (!file_exists($configPath)) {
             $output->writeln("<error>Config file not found: $configPath</error>");
             return Command::FAILURE;
@@ -47,5 +51,24 @@ final class CreateAppCommand extends Command
 
         $output->writeln('<info>Структура успешно создана!</info>');
         return Command::SUCCESS;
+    }
+
+    private function resolvePath(string $path): string
+    {
+        if (str_starts_with($path, './') || str_starts_with($path, '../')) {
+            // Try relative to current working directory first
+            $cwd = getcwd();
+            $resolved = realpath($cwd . '/' . $path);
+            if ($resolved !== false && file_exists($resolved)) {
+                return $resolved;
+            }
+            // Then try relative to script location
+            $scriptDir = dirname(__DIR__, 2);
+            $resolved = realpath($scriptDir . '/' . $path);
+            if ($resolved !== false && file_exists($resolved)) {
+                return $resolved;
+            }
+        }
+        return $path;
     }
 }

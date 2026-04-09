@@ -1,0 +1,41 @@
+<?php
+declare(strict_types=1);
+
+namespace Medigi\ICD10\Domain\Event\ICD10;
+
+use Medigi\ICD10\Domain\VO\ID;
+use DateTimeImmutable;
+
+class ICD10Updated
+{
+    private ID $id;
+    private array $changes;
+    private DateTimeImmutable $occurredOn;
+
+    public function __construct(ID $id, array $changes, DateTimeImmutable $occurredOn)
+    {
+        $this->id = $id;
+        $this->changes = $changes;
+        $this->occurredOn = $occurredOn;
+    }
+
+    public function getId(): ID
+    {
+        return $this->id;
+    }
+
+    public function getChanges(): array
+    {
+        return $this->changes;
+    }
+
+    public function getOccurredOn(): DateTimeImmutable
+    {
+        return $this->occurredOn;
+    }
+
+    public function getEventName(): string
+    {
+        return 'ICD10Updated';
+    }
+}

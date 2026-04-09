@@ -1,0 +1,41 @@
+<?php
+declare(strict_types=1);
+
+namespace ##Application##\LabTest\Domain\VO;
+
+use Symfony\Component\Uid\Ulid;
+
+class ID
+{
+    private Ulid $ulid;
+
+    private function __construct(Ulid $ulid)
+    {
+        $this->ulid = $ulid;
+    }
+
+    public static function generate(): self
+    {
+        return new self(new Ulid());
+    }
+
+    public static function fromString(string $id): self
+    {
+        return new self(new Ulid($id));
+    }
+
+    public function toString(): string
+    {
+        return $this->ulid->toRfc4122();
+    }
+
+    public function equals(ID $other): bool
+    {
+        return $this->ulid->equals($other->ulid);
+    }
+
+    public function __toString(): string
+    {
+        return $this->toString();
+    }
+}

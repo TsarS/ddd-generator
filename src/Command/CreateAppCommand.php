@@ -29,8 +29,24 @@ final class CreateAppCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $appName = $input->getArgument('app');
+
+        // If no config provided, check for ddd.json in current directory
         $configPath = $input->getOption('config');
+        if (empty($configPath)) {
+            $cwd = getcwd();
+            if (file_exists($cwd . '/ddd.json')) {
+                $configPath = $cwd . '/ddd.json';
+            }
+        }
+
+        // If no events provided, check for events.json in current directory
         $eventsPath = $input->getOption('events');
+        if (empty($eventsPath)) {
+            $cwd = getcwd();
+            if (file_exists($cwd . '/events.json')) {
+                $eventsPath = $cwd . '/events.json';
+            }
+        }
 
         if (empty($appName) || empty($configPath)) {
             $output->writeln('<error>Укажите название приложения и путь к ddd.json</error>');
